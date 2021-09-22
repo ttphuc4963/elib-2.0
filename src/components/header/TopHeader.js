@@ -31,53 +31,62 @@ function TopHeader() {
     };
   }, [isDropdownActive]);
   return (
-    <Nav>
-      <NavLogo>
-        <Logo src="/images/logo.svg" alt="" />
-        <LogoHeading>
-          <AppName>eLib 2.0</AppName>
-          <AppTitle>Thư viện khoa CNTT</AppTitle>
-        </LogoHeading>
-      </NavLogo>
-      <NavSearch>
-        <SearchWrapper spellcheck="false">
-          <i className="fas fa-search"></i>
-          <SearchInput
-            ref={searchInputRef}
-            placeholder="Tìm kiếm sách, tác giả, NXB, ..."
-            spellCheck="false"
-          ></SearchInput>
-          <i onClick={handleClearInput} className="fas fa-times"></i>
-        </SearchWrapper>
-      </NavSearch>
-      <NavAction>
-        <LoginButton>Đăng nhập</LoginButton>
-        <UserImg
-          onClick={handleShowDropdown}
-          src="https://scontent.fvca1-1.fna.fbcdn.net/v/t39.30808-6/241496820_3059596747620924_7015950603068095091_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=QA0KNBQcFsMAX_QLDpx&_nc_ht=scontent.fvca1-1.fna&oh=ffd17100463040b7edd7f5ce5a4a7340&oe=614F1C34"
-        />
-        <DropdownWrapper
-          ref={dropdownRef}
-          className={`${isDropdownActive ? 'active-dropdown' : ''}`}
-        >
-          <ul>
-            <li>Thông tin tài khoản</li>
-            <hr />
-            <li>Đăng xuất</li>
-          </ul>
-        </DropdownWrapper>
-      </NavAction>
-    </Nav>
+    <TopHeaderContainer>
+      <Nav>
+        <NavLogo>
+          <Logo src="/images/logo.svg" alt="" />
+          <LogoHeading>
+            <AppName>eLib 2.0</AppName>
+            <AppTitle>Thư viện khoa CNTT</AppTitle>
+          </LogoHeading>
+        </NavLogo>
+        <NavSearch>
+          <SearchWrapper spellcheck="false">
+            <i className="fas fa-search"></i>
+            <SearchInput
+              ref={searchInputRef}
+              placeholder="Tìm kiếm sách, tác giả, NXB, ..."
+              spellCheck="false"
+            ></SearchInput>
+            <i onClick={handleClearInput} className="fas fa-times"></i>
+          </SearchWrapper>
+        </NavSearch>
+        <NavAction>
+          <LoginButton className="my-button">Đăng nhập</LoginButton>
+          <UserImg
+            onClick={handleShowDropdown}
+            src="https://scontent.fvca1-1.fna.fbcdn.net/v/t39.30808-6/241496820_3059596747620924_7015950603068095091_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=QA0KNBQcFsMAX_QLDpx&_nc_ht=scontent.fvca1-1.fna&oh=ffd17100463040b7edd7f5ce5a4a7340&oe=614F1C34"
+          />
+          <DropdownWrapper
+            ref={dropdownRef}
+            className={`${isDropdownActive ? 'active-dropdown' : ''}`}
+          >
+            <ul>
+              <li>Thông tin tài khoản</li>
+              <hr />
+              <li>Đăng xuất</li>
+            </ul>
+          </DropdownWrapper>
+        </NavAction>
+      </Nav>
+    </TopHeaderContainer>
   );
 }
 
 export default TopHeader;
-
+const TopHeaderContainer = styled.div`
+  background: #1a94ff;
+  display: flex;
+  justify-content: center;
+`;
 const Nav = styled.div`
-  padding: 1.4rem 3.6rem;
+  padding: 1.4rem 0;
+  width: 95%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  color: white;
 `;
 const NavLogo = styled.div`
   display: flex;
@@ -104,20 +113,24 @@ const AppTitle = styled.div`
 `;
 
 const NavSearch = styled.div`
+  background: white;
   border-radius: 20px;
   height: 4rem;
   width: 42rem;
-  border: 1.5px solid rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   &:focus-within {
-    border-color: #185adb;
     caret-color: #185adb;
+    border: 1.5px solid rgba(0, 0, 0, 0.2);
     .fa-times {
-      transform: rotate(90deg);
-      color: var(--royal-blue);
+      transform: rotate(90deg) scale(1.2);
+
+      color: var(--primary-blue);
       cursor: pointer;
+    }
+    .fa-search {
+      color: var(--primary-blue);
     }
   }
 `;
@@ -150,23 +163,7 @@ const SearchInput = styled.input`
   }
 `;
 
-const LoginButton = styled.div`
-  cursor: pointer;
-  height: 2.6rem;
-  background-color: #31a8ff;
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  transition: all 0.2s ease 0s;
-  letter-spacing: 0.16rem;
-  // display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  &:hover {
-    background-color: #5fbbff;
-    opacity: 1;
-  }
+const LoginButton = styled.button`
   display: none;
 `;
 
@@ -186,8 +183,8 @@ const NavAction = styled.div`
 `;
 const DropdownWrapper = styled.div`
   visibility: hidden;
-  transform: translateY(-0.3rem);
-  transition: transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+  transform: translateY(-1rem);
+  transition: transform 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
   background: white;
   position: absolute;
   width: 20rem;

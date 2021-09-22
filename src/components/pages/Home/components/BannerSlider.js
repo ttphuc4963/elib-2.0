@@ -21,19 +21,27 @@ function ImgSlider() {
       <Wrap>
         <Banner>
           <BannerLeft>
-            <h2>Tủ sách phong phú</h2>
-            <span>Thư viện có gần 600 đầu sách với đa dạng các thể loại.</span>
-            <BannerButton>Xem tất cả sách</BannerButton>
+            <h2>Thư viện khoa CNTT</h2>
+            <span>
+              Mở cửa các ngày trong tuần từ T2 - T5 (giờ hành chính)
+              <br /> Nhận sách tại văn phòng I53.
+            </span>
+            <BannerButton className="my-button">Xem tất cả sách</BannerButton>
           </BannerLeft>
+          <BannerRight src="/images/dev-vector.svg" />
         </Banner>
       </Wrap>
       <Wrap>
         <Banner>
           <BannerLeft>
-            <h2>Hơn 600 đầu sách</h2>
-            <span>Thư viện có gần 600 đầu sách với đa dạng các thể loại.</span>
-            <BannerButton>Xem tất cả sách</BannerButton>
+            <h2>Tủ sách phong phú</h2>
+            <span>
+              Thư viện có gần 600 đầu sách với đa dạng các thể loại như:
+              <br /> AI, Cơ sở dữ liệu, Mạng máy tính,...
+            </span>
+            <BannerButton className="my-button">Xem tất cả sách</BannerButton>
           </BannerLeft>
+          <BannerRight src="/images/book.svg" />
         </Banner>
       </Wrap>
     </Carousel>
@@ -43,23 +51,8 @@ function ImgSlider() {
 export default ImgSlider;
 
 const Carousel = styled(Slider)`
-  margin: 1rem 5rem;
-  ul li button {
-    &:before {
-      font-size: 10px;
-      color: rgb(150, 158, 171);
-    }
-  }
   li.slick-active button:before {
-    color: var(--primary-blue);
-  }
-  button {
-    z-index: 1;
-
-    &:before {
-      font-size: 2rem;
-      color: #73e0f6;
-    }
+    color: var(--primary-blue) !important;
   }
 `;
 
@@ -88,34 +81,23 @@ const Banner = styled.div`
 
 const BannerLeft = styled.div`
   color: white;
+  width: 50rem;
   h2 {
     font-size: 2.6rem;
     font-weight: 600;
-    line-height: 1.6;
+    margin-bottom: 1rem;
   }
   span {
     font-size: 1.6rem;
+    line-height: 1.4;
   }
 `;
 
 const BannerButton = styled.div`
-  margin-top: 2rem;
+  margin-top: 1.6rem;
   padding: 1rem;
-  width: fit-content;
-  cursor: pointer;
-  background-color: transparent;
-  color: white;
-  border-radius: 2rem;
-  transition: all 0.2s ease 0s;
-  letter-spacing: 0.16rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  border: 0.2rem solid white;
-  font-weight: 600;
-  &:hover {
-    background-color: white;
-    color: var(--primary-blue);
-  }
+`;
+
+const BannerRight = styled.img`
+  height: 80%;
 `;
