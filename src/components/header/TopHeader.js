@@ -1,8 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import '../App.css';
 
-function Header() {
+function TopHeader() {
   const dropdownRef = useRef(null);
   const searchInputRef = useRef(null);
   const [isDropdownActive, setDropdownActive] = useState(false);
@@ -42,13 +41,13 @@ function Header() {
       </NavLogo>
       <NavSearch>
         <SearchWrapper spellcheck="false">
-          <i class="fas fa-search"></i>
+          <i className="fas fa-search"></i>
           <SearchInput
             ref={searchInputRef}
             placeholder="Tìm kiếm sách, tác giả, NXB, ..."
-            spellcheck="false"
+            spellCheck="false"
           ></SearchInput>
-          <i onClick={handleClearInput} class="fas fa-times"></i>
+          <i onClick={handleClearInput} className="fas fa-times"></i>
         </SearchWrapper>
       </NavSearch>
       <NavAction>
@@ -72,12 +71,10 @@ function Header() {
   );
 }
 
-export default Header;
+export default TopHeader;
 
 const Nav = styled.div`
-  padding: 14px 36px;
-  box-shadow: rgba(99, 99, 99, 0.1) 0px 0px 12px 0px;
-  border-bottom: 1px solid rgba(99, 99, 99, 0.1);
+  padding: 1.4rem 3.6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -87,8 +84,8 @@ const NavLogo = styled.div`
   align-items: center;
 `;
 const Logo = styled.img`
-  width: 60px;
-  margin-right: 10px;
+  width: 6rem;
+  margin-right: 1rem;
 `;
 
 const LogoHeading = styled.div`
@@ -96,20 +93,20 @@ const LogoHeading = styled.div`
 `;
 
 const AppName = styled.div`
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 600;
-  margin-bottom: 2px;
+  margin-bottom: 0.2rem;
 `;
 
 const AppTitle = styled.div`
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 500;
 `;
 
 const NavSearch = styled.div`
   border-radius: 20px;
-  height: 40px;
-  width: 420px;
+  height: 4rem;
+  width: 42rem;
   border: 1.5px solid rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
@@ -120,6 +117,7 @@ const NavSearch = styled.div`
     .fa-times {
       transform: rotate(90deg);
       color: var(--royal-blue);
+      cursor: pointer;
     }
   }
 `;
@@ -136,10 +134,10 @@ const SearchWrapper = styled.div`
 
 const SearchInput = styled.input`
   color: rgba(0, 0, 0, 0.7);
-  margin-left: 10px;
-  font-size: 16px;
+  margin-left: 1rem;
+  font-size: 1.6rem;
   height: 100%;
-  width: 350px;
+  width: 35rem;
   border: none;
   background-color: transparent;
 
@@ -154,17 +152,17 @@ const SearchInput = styled.input`
 
 const LoginButton = styled.div`
   cursor: pointer;
-  height: 26px;
+  height: 2.6rem;
   background-color: #31a8ff;
   color: white;
-  padding: 10px 20px;
+  padding: 1rem 2rem;
   border-radius: 4px;
   transition: all 0.2s ease 0s;
-  letter-spacing: 1.6px;
+  letter-spacing: 0.16rem;
   // display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 1.6rem;
   &:hover {
     background-color: #5fbbff;
     opacity: 1;
@@ -173,8 +171,8 @@ const LoginButton = styled.div`
 `;
 
 const UserImg = styled.img`
-  width: 48px;
-  height: 48px;
+  width: 4.8rem;
+  height: 4.8rem;
   border-radius: 50%;
   cursor: pointer;
 `;
@@ -188,23 +186,26 @@ const NavAction = styled.div`
 `;
 const DropdownWrapper = styled.div`
   visibility: hidden;
-  transform: translateY(-3px);
+  transform: translateY(-0.3rem);
   transition: transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
   background: white;
   position: absolute;
-  width: 250px;
-  top: 60px;
-  right: 0px;
+  width: 20rem;
+  top: 6rem;
+  right: 0;
   border-radius: 10px;
   color: var(--text-color-light);
-  font-size: 20px;
+  font-size: 1.6rem;
   border: 0.5px solid rgba(0, 0, 0, 0.1);
-  box-shadow: rgba(0, 0, 0, 0.1) 0px -5px 20px -2px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 -5px 20px -2px;
   z-index: 1;
   hr {
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    height: 0.2rem;
+    border-radius: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: none;
     margin: 0;
-    width: 83%;
+    width: 80%;
     margin: 0 auto;
   }
   ul {
@@ -212,7 +213,7 @@ const DropdownWrapper = styled.div`
     padding: 0;
     margin: 0;
     li {
-      padding: 18px;
+      padding: 1.4rem 0 1.4rem 2rem;
       &:hover {
         cursor: pointer;
         color: var(--royal-blue);
