@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import SingleBookVertical from './SingleBookVertical';
+
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -21,7 +23,7 @@ function BooksSlider(props) {
         },
       },
       {
-        breakpoint: 1000,
+        breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           infinite: true,
@@ -72,7 +74,7 @@ const SliderTitle = styled.h3`
   color: var(--text-color);
   font-size: 2.2rem;
   font-weight: 700;
-  margin-left: 6rem;
+  margin-left: 6%;
 `;
 const Carousel = styled(Slider)`
   margin: 2rem 6rem;
@@ -102,7 +104,7 @@ const Carousel = styled(Slider)`
   }
 
   .slick-list {
-    overflow: visible;
+    overflow: hidden;
   }
   button {
     z-index: 1;

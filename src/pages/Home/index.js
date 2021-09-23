@@ -16,10 +16,7 @@ function Home() {
 export default Home;
 
 const HomeContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding-bottom: 14rem;
   overflow: hidden;
 `;

@@ -5,7 +5,7 @@ function SingleBookVertical(props) {
   return (
     <BookWrapper>
       <BookImg src={props.imgURL} />
-      <BookName>
+      <BookName className="line-clamp-2">
         Data mining: practical machine learning tools and technique
       </BookName>
       <span></span>
@@ -41,10 +41,6 @@ const BookName = styled.h3`
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--text-color);
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
 `;
 
 const BookAuthor = styled.p`

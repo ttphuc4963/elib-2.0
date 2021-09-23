@@ -81,7 +81,7 @@ const TopHeaderContainer = styled.div`
 `;
 const Nav = styled.div`
   padding: 1.4rem 0;
-  width: 95%;
+  width: 90%;
   display: flex;
   align-items: center;
   justify-content: space-between;

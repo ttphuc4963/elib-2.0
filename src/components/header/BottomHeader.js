@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 function BottomHeader() {
   return (
     <BottomHeaderContainer>
       <MainMenu>
         <MenuItem>
-          <a href="/">Trang chủ</a>
+          <Link to="/">Trang chủ</Link>
         </MenuItem>
         <MenuItem>
-          <a href="/">Tất cả sách</a>
+          <Link to="/search">Tất cả sách</Link>
         </MenuItem>
         <MenuItem>
-          <a href="/">Giới thiệu</a>
+          <Link to="/">Giới thiệu</Link>
         </MenuItem>
       </MainMenu>
     </BottomHeaderContainer>
@@ -23,15 +24,13 @@ export default BottomHeader;
 
 const BottomHeaderContainer = styled.div`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 10px 10px -5px;
+  padding-left: 5%;
 `;
 const MainMenu = styled.ul`
   display: flex;
   height: 6rem;
   align-items: center;
   font-size: 1.8rem;
-  & :first-child {
-    margin-left: 3rem;
-  }
 `;
 const MenuItem = styled.li`
   color: #333;

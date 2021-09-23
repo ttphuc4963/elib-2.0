@@ -59,7 +59,6 @@ const Carousel = styled(Slider)`
 const Wrap = styled.div`
   cursor: pointer;
   height: 25rem;
-  padding: 1rem;
 `;
 
 const Banner = styled.div`
@@ -72,11 +71,10 @@ const Banner = styled.div`
   );
   width: 100%;
   height: 100%;
-  border-radius: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 4rem;
+  padding: 0 6%;
 `;
 
 const BannerLeft = styled.div`
