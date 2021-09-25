@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SingleBookHorizontal from './SingleBookHorizontal';
+import SingleBookHorizontal from '../../../components/Book/SingleBookHorizontal';
 
 export default function SearchLeftSide() {
   return (

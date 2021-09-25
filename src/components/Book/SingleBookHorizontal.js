@@ -1,16 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function SingleBookHorizontal() {
   return (
     <Container>
-      <BookImg src="https://books.google.com/books/content?id=Pai-QgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"></BookImg>
-      <ContentWrapper>
-        <BookTitle className="line-clamp-2">
-          A First Course in Abstract Algebra: With Applications A First Course
-          in Abstract Algebra: With Applications in Abstract Algebra: With
-          Applications in Abstract Algebra: With Applications
-        </BookTitle>
+      <Link to="/search/test">
+        <BookImg
+          className="book-img"
+          src="https://books.google.com/books/content?id=Pai-QgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        ></BookImg>
+      </Link>
+      <ContentWrapper className="book-content-wrapper">
+        <Link to="/search/test">
+          <BookTitle className="line-clamp-2 book-title">
+            A First Course in Abstract Algebra: With Applications
+          </BookTitle>
+        </Link>
         <BookInfo>
           <BookInfoItem>
             ISBN: <span>9780131862678</span>
@@ -36,7 +42,7 @@ function SingleBookHorizontal() {
         </BookInfo>
       </ContentWrapper>
       <RightWrapper>
-        <i class="far fa-heart"></i>
+        <i className="far fa-heart"></i>
         <div>
           <p>1 cuốn có thể mượn</p>
           <BorrowBtn className="my-button my-btn-white">Mượn sách</BorrowBtn>
@@ -59,21 +65,25 @@ const Container = styled.div`
 
 const BookImg = styled.img`
   height: 20rem;
+  width: auto;
   margin-right: 3.2rem;
 `;
 
 const ContentWrapper = styled.div`
   width: 60rem;
-  color: var(--text-color);
 `;
 
 const BookTitle = styled.div`
+  color: var(--text-color);
   font-size: 2rem;
   font-weight: 600;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   margin-bottom: 1rem;
+  &:hover {
+    color: #42aae6;
+  }
 `;
 
 const BookInfo = styled.ul``;

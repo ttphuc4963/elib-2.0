@@ -18,7 +18,6 @@ code {
 }
 
 * {
-  --text-color: rgb(0, 0, 0, 0.8);
   --text-color-light: #757575;
   --text-color: #292929;
   --royal-blue: #4178f3;

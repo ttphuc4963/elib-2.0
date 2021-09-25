@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import BannerSlider from './components/BannerSlider';
-import BooksSlider from './components/BooksSlider';
+import BooksSlider from '../../components/Book/BooksSlider';
 
 function Home() {
   return (

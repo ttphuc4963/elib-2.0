@@ -1,30 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Tags() {
+function Tags(props) {
+  const renderTags = props.tags.map((tag) => {
+    return (
+      <TagWrapper key={tag.ID}>
+        <TagBtn className="my-button my-btn-gray">{tag.tagName}</TagBtn>
+      </TagWrapper>
+    );
+  });
+
   return (
     <TagsContainer>
-      <TagsHeader>Thể loại</TagsHeader>
-      <TagsList>
-        <TagWrapper>
-          <TagBtn className="my-button my-btn-gray">AI</TagBtn>
-        </TagWrapper>
-        <TagWrapper>
-          <TagBtn className="my-button my-btn-gray">Trí tuệ nhân tạo</TagBtn>
-        </TagWrapper>
-        <TagWrapper>
-          <TagBtn className="my-button my-btn-gray">Cơ sở dữ liệu</TagBtn>
-        </TagWrapper>
-        <TagWrapper>
-          <TagBtn className="my-button my-btn-gray">Hệ Thống Thông Tin</TagBtn>
-        </TagWrapper>
-        <TagWrapper>
-          <TagBtn className="my-button my-btn-gray">Công Nghệ Phần Mềm</TagBtn>
-        </TagWrapper>
-        <TagWrapper>
-          <TagBtn className="my-button my-btn-gray">Mạng máy tính</TagBtn>
-        </TagWrapper>
-      </TagsList>
+      <TagsHeader>{props.title}</TagsHeader>
+      <TagList>{renderTags}</TagList>
     </TagsContainer>
   );
 }
@@ -32,10 +21,10 @@ function Tags() {
 export default Tags;
 
 const TagsContainer = styled.div`
-  margin-left: 6.2rem;
   width: 70%;
+  margin-bottom: 6rem;
 `;
-const TagsList = styled.ul`
+const TagList = styled.ul`
   display: flex;
   flex-wrap: wrap;
 `;

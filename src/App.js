@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import Footer from './components/Footer';
 import Search from './pages/Search';
+import BookDetail from './pages/BookDetail';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
       <Router>
         <Header />
         <Switch>
+          <Route path="/search/test">
+            <BookDetail />
+          </Route>
           <Route path="/search">
             <Search />
           </Route>
