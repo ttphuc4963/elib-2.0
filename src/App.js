@@ -1,31 +1,34 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+import { Switch, Route } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Footer from './components/Footer';
 import Search from './pages/Search';
 import BookDetail from './pages/BookDetail';
+import Login from './pages/Login';
 
 function App() {
+  const { pathname } = useLocation();
   return (
     <div className="App">
-      <Router>
-        <Header />
-        <Switch>
-          <Route path="/search/test">
-            <BookDetail />
-          </Route>
-          <Route path="/search">
-            <Search />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-        <Footer />
-      </Router>
+      {pathname !== '/login' && <Header />}
+      <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/search/:isbn">
+          <BookDetail />
+        </Route>
+        <Route path="/search">
+          <Search />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+      {pathname !== '/login' && <Footer />}
     </div>
   );
 }

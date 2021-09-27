@@ -18,6 +18,7 @@ code {
 }
 
 * {
+  --font: 'Montserrat', sans-serif;
   --text-color-light: #757575;
   --text-color: #292929;
   --royal-blue: #4178f3;

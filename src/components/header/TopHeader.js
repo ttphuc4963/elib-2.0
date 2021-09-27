@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function TopHeader() {
@@ -52,11 +53,10 @@ function TopHeader() {
           </SearchWrapper>
         </NavSearch>
         <NavAction>
-          <LoginButton className="my-button">Đăng nhập</LoginButton>
-          <UserImg
-            onClick={handleShowDropdown}
-            src="https://scontent.fvca1-1.fna.fbcdn.net/v/t39.30808-6/241496820_3059596747620924_7015950603068095091_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=QA0KNBQcFsMAX_QLDpx&_nc_ht=scontent.fvca1-1.fna&oh=ffd17100463040b7edd7f5ce5a4a7340&oe=614F1C34"
-          />
+          <Link to="/login">
+            <LoginButton className="my-button">Đăng nhập</LoginButton>
+          </Link>
+          <UserImg onClick={handleShowDropdown} src="/images/avatar.jpg" />
           <DropdownWrapper
             ref={dropdownRef}
             className={`${isDropdownActive ? 'active-dropdown' : ''}`}
@@ -78,6 +78,7 @@ const TopHeaderContainer = styled.div`
   background: #1a94ff;
   display: flex;
   justify-content: center;
+  height: 8rem;
 `;
 const Nav = styled.div`
   padding: 1.4rem 0;
@@ -135,7 +136,7 @@ const NavSearch = styled.div`
   }
 `;
 
-const SearchWrapper = styled.div`
+const SearchWrapper = styled.form`
   color: #c8c6c6;
   height: 100%;
   display: flex;
@@ -163,15 +164,14 @@ const SearchInput = styled.input`
   }
 `;
 
-const LoginButton = styled.button`
-  display: none;
-`;
+const LoginButton = styled.button``;
 
 const UserImg = styled.img`
   width: 4.8rem;
   height: 4.8rem;
   border-radius: 50%;
   cursor: pointer;
+  display: none;
 `;
 
 const NavAction = styled.div`

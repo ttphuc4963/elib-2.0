@@ -25,10 +25,11 @@ export default BottomHeader;
 const BottomHeaderContainer = styled.div`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 10px 10px -5px;
   padding-left: 5%;
+  height: 6rem;
 `;
 const MainMenu = styled.ul`
-  display: flex;
   height: 6rem;
+  display: flex;
   align-items: center;
   font-size: 1.8rem;
 `;
