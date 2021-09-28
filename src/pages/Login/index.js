@@ -1,25 +1,78 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { FastField, Form, Formik } from 'formik';
+import InputField from '../../components/common/InputField';
+import * as Yup from 'yup';
+import { signIn } from '../../api/function/auth';
 
 function Login() {
+  const initialValues = {
+    email: '',
+    password: '',
+  };
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email('Email không hợp lệ.')
+      .required('Vui lòng nhập email.'),
+    password: Yup.string()
+      .min(6, 'Mật khẩu phải có ít nhất 6 ký tự.')
+      .required('Vui lòng nhập mật khẩu.'),
+  });
+
+  const handleSignIn = useCallback(async (values) => {
+    const user = await signIn(values);
+    if (!user) return;
+    const { accessToken, refreshToken } = user;
+    localStorage.setItem('token', accessToken);
+    localStorage.setItem('rfToken', refreshToken);
+    setTimeout(() => window.location.reload(), 1500);
+  }, []);
+
+  if (localStorage.getItem('token')) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <Container>
       <LoginWrapper>
-        <LoginForm>
-          <Link to="/">
-            <Logo src="/images/logo.svg" />
-          </Link>
-          <h3>Đăng nhập vào eLib</h3>
-          <LoginRow>
-            <LoginInput type="email" placeholder="Email" />
-          </LoginRow>
-          <LoginRow>
-            <LoginInput type="password" placeholder="Mật khẩu" />
-          </LoginRow>
-          <a href="/login">Quên mật khẩu?</a>
-        </LoginForm>
-        <LoginButton type="button">Đăng nhập</LoginButton>
+        <Formik
+          validationSchema={validationSchema}
+          initialValues={initialValues}
+          onSubmit={handleSignIn}
+        >
+          {() => {
+            return (
+              <Form>
+                <LoginForm>
+                  <Link to="/">
+                    <Logo src="/images/logo.svg" />
+                  </Link>
+                  <h3>Đăng nhập vào eLib</h3>
+
+                  <FastField
+                    name="email"
+                    type="text"
+                    placeholder="Địa chỉ email"
+                    label="Email"
+                    component={InputField}
+                    autoComplete="on"
+                  />
+                  <FastField
+                    name="password"
+                    type="password"
+                    placeholder="Mật khẩu"
+                    component={InputField}
+                    autoComplete="current-password"
+                  />
+                  <a href="/login">Quên mật khẩu?</a>
+                </LoginForm>
+                <LoginButton htmlType="submit">Đăng nhập</LoginButton>
+              </Form>
+            );
+          }}
+        </Formik>
+
         <LoginRegister>
           Bạn chưa có tài khoản? <a href="/login">Đăng ký</a>
         </LoginRegister>
@@ -68,10 +121,10 @@ const LoginWrapper = styled.div`
 const Logo = styled.img`
   width: 8rem;
   height: 8rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
 
-const LoginForm = styled.form`
+const LoginForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -86,38 +139,9 @@ const LoginForm = styled.form`
     font-size: 2.8rem;
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
   }
   button {
-  }
-`;
-
-const LoginRow = styled.div`
-height: 5rem;
-width: 40rem;
-margin 1rem 0;
-border-radius: 4rem;
-background-color: #f2f2f2;
-display:flex;
-align-items: center;
-border: 1px solid var(--line-color);
-padding: 0 2rem;
-
-i{
-    color: var(--text-color-light);
-    margin-right:1.2rem;
-    font-size:2rem;
-}
-`;
-
-const LoginInput = styled.input`
-  background: none;
-  border: none;
-  font-size: 1.6rem;
-  width: 100%;
-  height: 100%;
-  &:focus {
-    outline: none;
   }
 `;
 

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import { useLocation } from 'react-router';
@@ -8,15 +9,36 @@ import Footer from './components/Footer';
 import Search from './pages/Search';
 import BookDetail from './pages/BookDetail';
 import Login from './pages/Login';
+import Logout from './pages/Logout';
+import { isLoggedIn } from './utils/auth';
+import { clearProfile, setProfile } from './app/slice/profileSlice';
 
 function App() {
   const { pathname } = useLocation();
+
+  const dispatch = useDispatch();
+
+  const profile = useSelector((x) => x.profile);
+
+  useEffect(() => {
+    const checkLoggedIn = async () => {
+      if (profile) return;
+      const currentUser = await isLoggedIn();
+      dispatch(currentUser ? setProfile(currentUser) : clearProfile());
+    };
+
+    checkLoggedIn();
+  }, [dispatch, profile]);
+
   return (
     <div className="App">
-      {pathname !== '/login' && <Header />}
+      {pathname !== '/login' && pathname !== '/logout' && <Header />}
       <Switch>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/logout">
+          <Logout />
         </Route>
         <Route path="/search/:isbn">
           <BookDetail />
@@ -28,7 +50,7 @@ function App() {
           <Home />
         </Route>
       </Switch>
-      {pathname !== '/login' && <Footer />}
+      {pathname !== '/login' && pathname !== '/logout' && <Footer />}
     </div>
   );
 }

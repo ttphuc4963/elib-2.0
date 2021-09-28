@@ -1,8 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function TopHeader() {
+  const profile = useSelector((x) => x.profile);
   const dropdownRef = useRef(null);
   const searchInputRef = useRef(null);
   const [isDropdownActive, setDropdownActive] = useState(false);
@@ -53,10 +55,13 @@ function TopHeader() {
           </SearchWrapper>
         </NavSearch>
         <NavAction>
-          <Link to="/login">
-            <LoginButton className="my-button">Đăng nhập</LoginButton>
-          </Link>
-          <UserImg onClick={handleShowDropdown} src="/images/avatar.jpg" />
+          {profile ? (
+            <UserImg onClick={handleShowDropdown} src="/images/avatar.jpg" />
+          ) : (
+            <Link to="/login">
+              <LoginButton className="my-button">Đăng nhập</LoginButton>
+            </Link>
+          )}
           <DropdownWrapper
             ref={dropdownRef}
             className={`${isDropdownActive ? 'active-dropdown' : ''}`}
@@ -64,7 +69,9 @@ function TopHeader() {
             <ul>
               <li>Thông tin tài khoản</li>
               <hr />
-              <li>Đăng xuất</li>
+              <Link to="/logout">
+                <li>Đăng xuất</li>
+              </Link>
             </ul>
           </DropdownWrapper>
         </NavAction>
@@ -171,7 +178,6 @@ const UserImg = styled.img`
   height: 4.8rem;
   border-radius: 50%;
   cursor: pointer;
-  display: none;
 `;
 
 const NavAction = styled.div`
@@ -216,5 +222,8 @@ const DropdownWrapper = styled.div`
         color: var(--royal-blue);
       }
     }
+  }
+  a {
+    color: var(--text-color-light);
   }
 `;
