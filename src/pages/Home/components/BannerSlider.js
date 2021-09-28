@@ -9,7 +9,7 @@ import 'slick-carousel/slick/slick-theme.css';
 function ImgSlider() {
   let settings = {
     infinite: true,
-    speed: 1000,
+    speed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,

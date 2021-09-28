@@ -12,6 +12,7 @@ function BooksSlider(props) {
     infinite: true,
     speed: 2000,
     slidesToScroll: 1,
+    autoplay: true,
     autoplaySpeed: 5000,
     slidesToShow: 5,
     responsive: [
@@ -31,35 +32,21 @@ function BooksSlider(props) {
       },
     ],
   };
+
+  const renderBooks = () => {
+    return props.books.map((book) => {
+      return (
+        <Wrap>
+          <SingleBookVertical bookInfo={book} />
+        </Wrap>
+      );
+    });
+  };
+
   return (
     <BooksSliderContainer>
       <SliderTitle>{props.title}</SliderTitle>
-      <Carousel {...settings}>
-        <Wrap>
-          <SingleBookVertical imgURL="https://i.ibb.co/02Z1Vqm/content-id-MSZwwg-EACAAJ-printsec-frontcover-img-1-zoom-1-source-gbs-api.jpg" />
-        </Wrap>
-        <Wrap>
-          <SingleBookVertical imgURL="https://i.ibb.co/02Z1Vqm/content-id-MSZwwg-EACAAJ-printsec-frontcover-img-1-zoom-1-source-gbs-api.jpg" />
-        </Wrap>
-        <Wrap>
-          <SingleBookVertical imgURL="https://i.ibb.co/02Z1Vqm/content-id-MSZwwg-EACAAJ-printsec-frontcover-img-1-zoom-1-source-gbs-api.jpg" />
-        </Wrap>
-        <Wrap>
-          <SingleBookVertical imgURL="https://i.ibb.co/02Z1Vqm/content-id-MSZwwg-EACAAJ-printsec-frontcover-img-1-zoom-1-source-gbs-api.jpg" />
-        </Wrap>
-        <Wrap>
-          <SingleBookVertical imgURL="https://i.ibb.co/02Z1Vqm/content-id-MSZwwg-EACAAJ-printsec-frontcover-img-1-zoom-1-source-gbs-api.jpg" />
-        </Wrap>
-        <Wrap>
-          <SingleBookVertical imgURL="https://i.ibb.co/02Z1Vqm/content-id-MSZwwg-EACAAJ-printsec-frontcover-img-1-zoom-1-source-gbs-api.jpg" />
-        </Wrap>
-        <Wrap>
-          <SingleBookVertical imgURL="https://i.ibb.co/02Z1Vqm/content-id-MSZwwg-EACAAJ-printsec-frontcover-img-1-zoom-1-source-gbs-api.jpg" />
-        </Wrap>
-        <Wrap>
-          <SingleBookVertical imgURL="https://i.ibb.co/02Z1Vqm/content-id-MSZwwg-EACAAJ-printsec-frontcover-img-1-zoom-1-source-gbs-api.jpg" />
-        </Wrap>
-      </Carousel>
+      <Carousel {...settings}>{renderBooks()}</Carousel>
     </BooksSliderContainer>
   );
 }
