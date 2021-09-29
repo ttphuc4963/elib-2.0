@@ -2,49 +2,49 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-function SingleBookHorizontal() {
+function SingleBookHorizontal({ bookInfo }) {
   return (
     <Container>
       <Link to="/search/test">
-        <BookImg
-          className="book-img"
-          src="https://books.google.com/books/content?id=Pai-QgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-        ></BookImg>
+        <BookImg className="book-img" src={bookInfo.coverImg}></BookImg>
       </Link>
       <ContentWrapper className="book-content-wrapper">
         <Link to="/search/test">
           <BookTitle className="line-clamp-2 book-title">
-            A First Course in Abstract Algebra: With Applications
+            {bookInfo.bookName}
           </BookTitle>
         </Link>
         <BookInfo>
           <BookInfoItem>
-            ISBN: <span>9780131862678</span>
+            ISBN: <span>{bookInfo.ISBN}</span>
           </BookInfoItem>
           <BookInfoItem>
-            Tác giả: <span>Joseph J. Rotman</span>
+            Tác giả: <span>{bookInfo.author}</span>
           </BookInfoItem>
           <BookInfoItem>
-            Ngôn ngữ: <span>Tiếng Anh</span>
+            Ngôn ngữ: <span>{bookInfo.language}</span>
           </BookInfoItem>
           <BookInfoItem>
-            Số trang: <span>581</span>
+            Số trang:{' '}
+            <span>
+              {!bookInfo.numberOfPages ? 'Không rõ' : bookInfo.numberOfPages}
+            </span>
           </BookInfoItem>
           <BookInfoItem>
-            Phiên bản: <span>3</span>
+            Phiên bản: <span>{bookInfo.edition}</span>
           </BookInfoItem>
           <BookInfoItem>
-            Năm phát hành: <span>2020</span>
+            Năm phát hành: <span>{bookInfo.publishYear}</span>
           </BookInfoItem>
           <BookInfoItem>
-            Nhà phát hành: <span>Prentice Hall</span>
+            Nhà phát hành: <span>{bookInfo.publisher}</span>
           </BookInfoItem>
         </BookInfo>
       </ContentWrapper>
       <RightWrapper>
         <i className="far fa-heart"></i>
         <div>
-          <p>1 cuốn có thể mượn</p>
+          <p>{bookInfo.total} cuốn có thể mượn</p>
           <BorrowBtn className="my-button my-btn-white">Mượn sách</BorrowBtn>
         </div>
       </RightWrapper>

@@ -1,12 +1,15 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { setKeyword } from '../../app/slice/searchSlice';
 
 function TopHeader() {
+  const dispatch = useDispatch();
   const profile = useSelector((x) => x.profile);
   const dropdownRef = useRef(null);
   const searchInputRef = useRef(null);
+
   const [isDropdownActive, setDropdownActive] = useState(false);
 
   const handleShowDropdown = () => {
@@ -16,6 +19,14 @@ function TopHeader() {
   const handleClearInput = () => {
     searchInputRef.current.value = '';
   };
+
+  const handleSearch = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(setKeyword(searchInputRef.current.value));
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     const pageClickEvent = (e) => {
@@ -33,6 +44,7 @@ function TopHeader() {
       window.removeEventListener('click', pageClickEvent);
     };
   }, [isDropdownActive]);
+
   return (
     <TopHeaderContainer>
       <Nav>
@@ -44,7 +56,7 @@ function TopHeader() {
           </LogoHeading>
         </NavLogo>
         <NavSearch>
-          <SearchWrapper spellcheck="false">
+          <SearchWrapper spellcheck="false" onSubmit={handleSearch}>
             <i className="fas fa-search"></i>
             <SearchInput
               ref={searchInputRef}
@@ -187,7 +199,7 @@ const NavAction = styled.div`
     transform: translateY(0);
   }
 `;
-const DropdownWrapper = styled.div`
+export const DropdownWrapper = styled.div`
   visibility: hidden;
   transform: translateY(-1rem);
   transition: transform 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
