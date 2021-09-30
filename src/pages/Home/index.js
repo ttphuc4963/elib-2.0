@@ -38,4 +38,5 @@ const HomeContainer = styled.div`
   margin: 0 auto;
   padding-bottom: 14rem;
   overflow: hidden;
+  width: 100vw;
 `;

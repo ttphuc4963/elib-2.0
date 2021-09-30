@@ -1,15 +1,15 @@
 import api from '../index';
 import { Default } from '../../constants/query';
 
-export const search = (
+export const search = ({
   keyword,
   page = Default.PAGE,
   limit = Default.LIMIT,
   filter,
   filterKeyword,
   orderBy,
-  orderType
-) => {
+  orderType,
+}) => {
   return api({
     url: '/search/ver2',
     params: {

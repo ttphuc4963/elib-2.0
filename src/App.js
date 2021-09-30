@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Logout from './pages/Logout';
 import { isLoggedIn } from './utils/auth';
 import { clearProfile, setProfile } from './app/slice/profileSlice';
+import styled from 'styled-components';
 
 function App() {
   const { pathname } = useLocation();
@@ -31,7 +32,7 @@ function App() {
   }, [dispatch, profile]);
 
   return (
-    <div className="App">
+    <Container className="App">
       {pathname !== '/login' && pathname !== '/logout' && <Header />}
       <Switch>
         <Route path="/login">
@@ -51,8 +52,12 @@ function App() {
         </Route>
       </Switch>
       {pathname !== '/login' && pathname !== '/logout' && <Footer />}
-    </div>
+    </Container>
   );
 }
 
 export default App;
+
+const Container = styled.div`
+  overflow-x: hidden;
+`;

@@ -26,6 +26,7 @@ const BottomHeaderContainer = styled.div`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 10px 10px -5px;
   padding-left: 5%;
   height: 6rem;
+  width: 100vw;
 `;
 const MainMenu = styled.ul`
   height: 6rem;

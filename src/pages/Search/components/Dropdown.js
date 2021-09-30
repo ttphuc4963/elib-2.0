@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-function Dropdown({ option }) {
+function Dropdown({ option, onSelect }) {
   const dropdownRef = useRef();
   const [items] = useState(option);
   const [isOpen, setOpen] = useState(false);
@@ -12,8 +12,11 @@ function Dropdown({ option }) {
   };
 
   const handleItemClick = (id) => {
+    id = parseInt(id);
     setOpen(!isOpen);
-    setSelectedItem(parseInt(id));
+    const { orderBy, orderType } = items.find((item) => item.id === id);
+    onSelect({ orderBy, orderType });
+    setSelectedItem(id);
   };
 
   useEffect(() => {

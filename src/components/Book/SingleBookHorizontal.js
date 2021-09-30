@@ -61,11 +61,12 @@ const Container = styled.div`
   border-top: 1px solid var(--line-color);
   padding: 4rem 2.4rem;
   margin-right: 8rem;
+  width: 95%;
 `;
 
 const BookImg = styled.img`
   height: 20rem;
-  width: auto;
+  width: 16rem;
   margin-right: 3.2rem;
 `;
 

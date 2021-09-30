@@ -51,6 +51,7 @@ function ImgSlider() {
 export default ImgSlider;
 
 const Carousel = styled(Slider)`
+  width: 100vw;
   li.slick-active button:before {
     color: var(--primary-blue) !important;
   }

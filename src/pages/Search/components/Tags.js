@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
+import { Query } from '../../../constants/query';
 
-function Tags(props) {
-  const renderTags = props.tags.map((tag) => {
+function Tags({ tags, title, type, onSelect }) {
+  const handleTagSelect = useCallback(
+    (tag) => {
+      if (type === Query.FILTER.Total) {
+        onSelect({
+          filter: type,
+          filterKeyword: tag === 'Còn' ? 'true' : 'false',
+        });
+      } else onSelect({ filter: type, filterKeyword: tag });
+    },
+    [type, onSelect]
+  );
+
+  const renderTags = tags.map((tag, index) => {
     return (
-      <TagWrapper key={tag.ID}>
-        <TagBtn className="my-button my-btn-gray">{tag.tagName}</TagBtn>
+      <TagWrapper key={index}>
+        <TagBtn
+          className="my-button my-btn-gray"
+          onClick={() => handleTagSelect(tag)}
+        >
+          {tag}
+        </TagBtn>
       </TagWrapper>
     );
   });
 
   return (
     <TagsContainer>
-      <TagsHeader>{props.title}</TagsHeader>
+      <TagsHeader>{title}</TagsHeader>
       <TagList>{renderTags}</TagList>
     </TagsContainer>
   );

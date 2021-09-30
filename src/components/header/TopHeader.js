@@ -98,6 +98,7 @@ const TopHeaderContainer = styled.div`
   display: flex;
   justify-content: center;
   height: 8rem;
+  width: 100vw;
 `;
 const Nav = styled.div`
   padding: 1.4rem 0;
