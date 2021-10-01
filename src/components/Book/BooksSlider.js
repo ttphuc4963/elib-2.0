@@ -1,4 +1,5 @@
 import React from 'react';
+import useWindowSize from '../../utils/hooks/useWindowSize';
 import styled from 'styled-components';
 
 import SingleBookVertical from './SingleBookVertical';
@@ -8,29 +9,45 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 function BooksSlider(props) {
+  const [width] = useWindowSize();
+  console.log(width);
   let settings = {
     infinite: true,
     speed: 2000,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    slidesToShow: 5,
-    responsive: [
-      {
-        breakpoint: 1680,
-        settings: {
-          slidesToShow: 4,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          infinite: true,
-        },
-      },
-    ],
+    slidesToShow: Math.floor(width / 320),
+    // responsive: [
+    //   {
+    //     breakpoint: 1400,
+    //     settings: {
+    //       slidesToShow: 4,
+    //       infinite: true,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 1200,
+    //     settings: {
+    //       slidesToShow: 3,
+    //       infinite: true,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 992,
+    //     settings: {
+    //       slidesToShow: 2,
+    //       infinite: true,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 768,
+    //     settings: {
+    //       slidesToShow: 1,
+    //       infinite: true,
+    //     },
+    //   },
+    // ],
   };
 
   const renderBooks = () => {

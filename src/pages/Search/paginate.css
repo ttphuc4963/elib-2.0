@@ -1,0 +1,66 @@
+.pagination {
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.pagination > ul {
+  padding: 0;
+  margin: 0;
+}
+
+.pagination li {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.pagination > li > a {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #fff;
+  width: 3rem;
+  height: 3rem;
+  /* border: 1px solid var(--line-color); */
+}
+
+.pagination > .active > a {
+  border-radius: 50%;
+  color: white;
+  background: var(--tiki-blue);
+}
+
+.pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #53b6ff;
+  margin: 0 2rem 0 2rem;
+}
+/* .pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #47ccde;
+  border-color: #47ccde;
+  outline: none;
+}
+.pagination > li > a,
+.pagination > li > span {
+  color: #47ccde;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-radius: unset;
+} */

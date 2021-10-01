@@ -1,26 +1,34 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { Query } from '../../../constants/query';
 
-function Tags({ tags, title, type, onSelect }) {
+function Tags({ tags, title, type, onSelect, id, selectedCatalog }) {
+  const [selectedTag, setSelectedTag] = useState(null);
+
   const handleTagSelect = useCallback(
-    (tag) => {
+    (tag, index) => {
+      setSelectedTag(index);
       if (type === Query.FILTER.Total) {
         onSelect({
-          filter: type,
-          filterKeyword: tag === 'Còn' ? 'true' : 'false',
+          data: {
+            filter: type,
+            filterKeyword: tag === 'Còn' ? 'true' : 'false',
+          },
+          id: id,
         });
-      } else onSelect({ filter: type, filterKeyword: tag });
+      } else onSelect({ data: { filter: type, filterKeyword: tag }, id: id });
     },
-    [type, onSelect]
+    [type, onSelect, id]
   );
 
   const renderTags = tags.map((tag, index) => {
     return (
       <TagWrapper key={index}>
         <TagBtn
-          className="my-button my-btn-gray"
-          onClick={() => handleTagSelect(tag)}
+          className={`my-button my-btn-gray ${
+            selectedTag === index && selectedCatalog === id && 'active-tag'
+          }`}
+          onClick={() => handleTagSelect(tag, index)}
         >
           {tag}
         </TagBtn>
@@ -48,6 +56,10 @@ const TagList = styled.ul`
 `;
 const TagWrapper = styled.li`
   margin: 0.8rem 0.8rem 0 0;
+  .active-tag {
+    background: var(--tiki-blue);
+    color: white;
+  }
 `;
 
 const TagBtn = styled.button`

@@ -1,8 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
+
 import styled from 'styled-components';
+
+import './paginate.css';
 
 import { Query, Default } from '../../constants/query';
 
+import ReactPaginate from 'react-paginate';
 import SingleBookHorizontal from '../../components/Book/SingleBookHorizontal';
 import Dropdown from './components/Dropdown';
 import Tags from './components/Tags';
@@ -67,22 +71,34 @@ function Search() {
 
   const [data, setData] = useState(initData);
   const [query, setQuery] = useState(initQuery);
+  const [selectedCatalog, setSelectedCatalog] = useState('');
+
   const handleQuerySelect = useCallback(
-    (data) => {
+    ({ data, id }) => {
+      setSelectedCatalog(id);
       setQuery({ ...query, ...data });
     },
     [query]
   );
 
+  const handlePageChange = ({ selected }) => {
+    setData({ ...data, currentPage: selected + 1 });
+  };
+
+  console.log(data);
+
   useEffect(() => {
     const handleSearch = async () => {
       const { orderBy, orderType, filter, filterKeyword } = query;
+      const { currentPage, limit } = data;
       const newData = await search({
         keyword,
         orderBy,
         orderType,
         filter,
         filterKeyword,
+        page: currentPage,
+        limit,
       });
       if (!newData) return setData(initData);
       if (JSON.stringify(data) !== JSON.stringify(newData)) setData(newData);
@@ -95,7 +111,7 @@ function Search() {
     <SearchContainer>
       <SearchLeftSide>
         <SearchResultTitle>
-          {!data.totalBooks
+          {typeof data.totalBooks === 'undefined'
             ? 'Đang tìm sách...'
             : data.totalBooks !== 0
             ? `Tìm thấy ${data.totalBooks} sách`
@@ -105,10 +121,21 @@ function Search() {
           data.books.map((book) => (
             <SingleBookHorizontal key={book.ISBN} bookInfo={book} />
           ))}
-
-        {/* <SingleBookHorizontal />
-        <SingleBookHorizontal />
-        <SingleBookHorizontal /> */}
+        {data.totalPages > 1 && (
+          <ReactPaginate
+            initialPage={data.currentPage - 1}
+            previousLabel={'<'}
+            nextLabel={'>'}
+            breakLabel={'...'}
+            containerClassName={'pagination'}
+            breakClassName={'break-me'}
+            activeClassName={'active'}
+            pageCount={data.totalPages}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={1}
+            onPageChange={handlePageChange}
+          />
+        )}
       </SearchLeftSide>
       <SearchRightSide>
         <SortWrapper>
@@ -116,16 +143,20 @@ function Search() {
           <Dropdown option={sortOption} onSelect={handleQuerySelect} />
         </SortWrapper>
         <Tags
+          id="total"
           tags={['Còn', 'Hết']}
           title={'Số lượng'}
           type={Query.FILTER.Total}
           onSelect={handleQuerySelect}
+          selectedCatalog={selectedCatalog}
         />
         <Tags
+          id="tag-name"
           tags={data.tagNames}
           title={'Thể loại'}
           type={Query.FILTER.Tag}
           onSelect={handleQuerySelect}
+          selectedCatalog={selectedCatalog}
         />
       </SearchRightSide>
     </SearchContainer>
@@ -148,6 +179,9 @@ const SearchLeftSide = styled.div`
   padding-left: 5%;
   padding-bottom: 10rem;
   flex-shirk: 1;
+  .pagination {
+    margin-top: 6rem;
+  }
 `;
 
 const SearchResultTitle = styled.h2`
