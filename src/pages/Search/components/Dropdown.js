@@ -15,7 +15,7 @@ function Dropdown({ option, onSelect }) {
     id = parseInt(id);
     setOpen(!isOpen);
     const { orderBy, orderType } = items.find((item) => item.id === id);
-    onSelect({ orderBy, orderType });
+    onSelect({ data: { orderBy, orderType } });
     setSelectedItem(id);
   };
 

@@ -5,11 +5,11 @@ import styled from 'styled-components';
 function SingleBookHorizontal({ bookInfo }) {
   return (
     <Container>
-      <Link to="/search/test">
+      <Link to={`/search/${bookInfo.ISBN}`}>
         <BookImg className="book-img" src={bookInfo.coverImg}></BookImg>
       </Link>
       <ContentWrapper className="book-content-wrapper">
-        <Link to="/search/test">
+        <Link to={`/search/${bookInfo.ISBN}`}>
           <BookTitle className="line-clamp-2 book-title">
             {bookInfo.bookName}
           </BookTitle>

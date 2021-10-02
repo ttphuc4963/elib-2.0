@@ -20,6 +20,7 @@ function Tags({ tags, title, type, onSelect, id, selectedCatalog }) {
     },
     [type, onSelect, id]
   );
+  console.log(tags);
 
   const renderTags = tags.map((tag, index) => {
     return (
@@ -39,7 +40,7 @@ function Tags({ tags, title, type, onSelect, id, selectedCatalog }) {
   return (
     <TagsContainer>
       <TagsHeader>{title}</TagsHeader>
-      <TagList>{renderTags}</TagList>
+      {tags[0] ? <TagList>{renderTags}</TagList> : <div></div>}
     </TagsContainer>
   );
 }

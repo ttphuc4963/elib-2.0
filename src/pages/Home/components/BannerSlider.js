@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { Link } from 'react-router-dom';
 
 //react-slick
 
@@ -26,7 +27,9 @@ function ImgSlider() {
               Mở cửa các ngày trong tuần từ T2 - T5 (giờ hành chính)
               <br /> Nhận sách tại văn phòng I53.
             </span>
-            <BannerButton className="my-button">Xem tất cả sách</BannerButton>
+            <Link to="/search">
+              <BannerButton className="my-button">Xem tất cả sách</BannerButton>
+            </Link>
           </BannerLeft>
           <BannerRight src="/images/dev-vector.svg" />
         </Banner>

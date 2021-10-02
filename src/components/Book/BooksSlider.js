@@ -10,50 +10,30 @@ import 'slick-carousel/slick/slick-theme.css';
 
 function BooksSlider(props) {
   const [width] = useWindowSize();
-  console.log(width);
+
+  const listLength = props.books.length,
+    totalSlide = Math.floor(width / 320);
+
+  let slidesToShow =
+    listLength !== 0 && totalSlide !== 0
+      ? listLength > totalSlide
+        ? totalSlide
+        : listLength
+      : 1;
+
   let settings = {
     infinite: true,
     speed: 2000,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    slidesToShow: Math.floor(width / 320),
-    // responsive: [
-    //   {
-    //     breakpoint: 1400,
-    //     settings: {
-    //       slidesToShow: 4,
-    //       infinite: true,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 1200,
-    //     settings: {
-    //       slidesToShow: 3,
-    //       infinite: true,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 992,
-    //     settings: {
-    //       slidesToShow: 2,
-    //       infinite: true,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 768,
-    //     settings: {
-    //       slidesToShow: 1,
-    //       infinite: true,
-    //     },
-    //   },
-    // ],
+    slidesToShow,
   };
 
   const renderBooks = () => {
     return props.books.map((book) => {
       return (
-        <Wrap>
+        <Wrap key={book.ISBN}>
           <SingleBookVertical bookInfo={book} />
         </Wrap>
       );
@@ -72,6 +52,7 @@ export default BooksSlider;
 
 const BooksSliderContainer = styled.div`
   margin-top: 6rem;
+  width: 100%;
 `;
 
 const SliderTitle = styled.h3`

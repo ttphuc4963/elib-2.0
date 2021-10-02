@@ -75,7 +75,7 @@ function Search() {
 
   const handleQuerySelect = useCallback(
     ({ data, id }) => {
-      setSelectedCatalog(id);
+      id && setSelectedCatalog(id);
       setQuery({ ...query, ...data });
     },
     [query]
@@ -85,7 +85,7 @@ function Search() {
     setData({ ...data, currentPage: selected + 1 });
   };
 
-  console.log(data);
+  console.log(query);
 
   useEffect(() => {
     const handleSearch = async () => {

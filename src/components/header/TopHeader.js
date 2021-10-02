@@ -49,12 +49,15 @@ function TopHeader() {
     <TopHeaderContainer>
       <Nav>
         <NavLogo>
-          <Logo src="/images/logo.svg" alt="" />
+          <Link to="/">
+            <Logo src="/images/logo.svg" alt="" />
+          </Link>
           <LogoHeading>
             <AppName>eLib 2.0</AppName>
             <AppTitle>Thư viện khoa CNTT</AppTitle>
           </LogoHeading>
         </NavLogo>
+
         <NavSearch>
           <SearchWrapper spellcheck="false" onSubmit={handleSearch}>
             <i className="fas fa-search"></i>
