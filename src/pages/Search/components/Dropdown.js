@@ -68,18 +68,20 @@ const Container = styled.div`
   -ms-user-select: none; /* IE 10+ */
   user-select: none; /* Likely future */
   position: relative;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   background-color: white;
   border-radius: 1rem;
-  width: 30rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--line-color);
+  width: 24rem;
+  height: fit-content;
+  // box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   .open {
     display: block;
   }
 `;
 
 const DropdownHeader = styled.div`
-  padding: 1.5rem;
+  padding: 1rem;
   cursor: pointer;
   font-weight: 500;
   display: flex;
@@ -95,14 +97,20 @@ const DropdownHeader = styled.div`
 `;
 const DropdownBody = styled.div`
   padding: 0.5rem;
-  border-top: 1px solid #e5e8ec;
   display: none;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid var(--line-color);
+  top: 4.2rem;
+  // box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   .selected {
     color: var(--my-orange);
   }
 `;
 const DropdownItem = styled.div`
-  padding: 10px;
+  padding: 1rem;
 
   &:hover {
     cursor: pointer;

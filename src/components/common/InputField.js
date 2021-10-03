@@ -42,7 +42,7 @@ const InputLabel = styled.div`
 `;
 const InputWrapper = styled.div`
 height: 5rem;
-width: 40rem;
+width: 36rem;
 margin 1rem 0;
 border-radius: 4rem;
 background-color: #f2f2f2;

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import styled from 'styled-components';
+
 import { Link } from 'react-router-dom';
 
 function BottomHeader() {
@@ -24,7 +26,7 @@ export default BottomHeader;
 
 const BottomHeaderContainer = styled.div`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 10px 10px -5px;
-  padding-left: 9rem;
+  padding-left: 5vw;
   height: 6rem;
   width: 100vw;
 `;

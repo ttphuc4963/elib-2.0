@@ -1,5 +1,8 @@
 import React from 'react';
+
 import styled from 'styled-components';
+import { media } from '../../../constants/breakpoint';
+
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -23,10 +26,10 @@ function ImgSlider() {
         <Banner>
           <BannerLeft>
             <h2>Thư viện khoa CNTT</h2>
-            <span>
+            <p>
               Mở cửa các ngày trong tuần từ T2 - T5 (giờ hành chính)
               <br /> Nhận sách tại văn phòng I53.
-            </span>
+            </p>
             <Link to="/search">
               <BannerButton className="my-button">Xem tất cả sách</BannerButton>
             </Link>
@@ -38,10 +41,10 @@ function ImgSlider() {
         <Banner>
           <BannerLeft>
             <h2>Tủ sách phong phú</h2>
-            <span>
+            <p>
               Thư viện có gần 600 đầu sách với đa dạng các thể loại như:
               <br /> AI, Cơ sở dữ liệu, Mạng máy tính,...
-            </span>
+            </p>
             <BannerButton className="my-button">Xem tất cả sách</BannerButton>
           </BannerLeft>
           <BannerRight src="/images/book.svg" />
@@ -82,23 +85,27 @@ const Banner = styled.div`
 
 const BannerLeft = styled.div`
   color: white;
-  width: 50rem;
   h2 {
-    font-size: 2.6rem;
+    font-size: 3.2rem;
     font-weight: 600;
-    margin-bottom: 1rem;
   }
-  span {
-    font-size: 1.6rem;
+  p {
+    font-size: 1.8rem;
     line-height: 1.4;
+    margin: 2rem 0;
   }
+  // ${media.tablet} {
+  //   width: 100rem;
+  // }
 `;
 
 const BannerButton = styled.div`
-  margin-top: 1.6rem;
   padding: 1rem;
 `;
 
 const BannerRight = styled.img`
   height: 80%;
+  ${media.tablet} {
+    display: none !important;
+  }
 `;

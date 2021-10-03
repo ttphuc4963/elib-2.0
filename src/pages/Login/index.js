@@ -108,9 +108,8 @@ const Container = styled.div`
 
 const LoginWrapper = styled.div`
   border-radius: 1rem;
-  width: 70rem;
   background: white;
-  padding: 4rem;
+  padding: 4rem 10rem;
   z-index: 999;
   display: flex;
   flex-direction: column;
@@ -141,13 +140,11 @@ const LoginForm = styled.div`
     color: var(--text-color);
     margin-bottom: 4rem;
   }
-  button {
-  }
 `;
 
 const LoginButton = styled.button`
     height: 5rem;
-    width: 40rem;
+    width: 36rem;
     margin 1rem 0;
     border-radius: 4rem;
     background-color: var(--tiki-blue);

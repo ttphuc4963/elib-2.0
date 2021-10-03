@@ -1,52 +1,56 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { media } from '../../constants/breakpoint';
 
 function SingleBookHorizontal({ bookInfo }) {
   return (
     <Container>
-      <Link to={`/search/${bookInfo.ISBN}`}>
-        <BookImg className="book-img" src={bookInfo.coverImg}></BookImg>
-      </Link>
-      <ContentWrapper className="book-content-wrapper">
+      <TopWrapper>
+        <p>{bookInfo.total} cuốn có thể mượn</p>
+        <FavoriteIcon className="far fa-heart"></FavoriteIcon>
+      </TopWrapper>
+      <LeftWrapper>
         <Link to={`/search/${bookInfo.ISBN}`}>
-          <BookTitle className="line-clamp-2 book-title">
-            {bookInfo.bookName}
-          </BookTitle>
+          <BookImg className="book-img" src={bookInfo.coverImg}></BookImg>
         </Link>
-        <BookInfo>
-          <BookInfoItem>
-            ISBN: <span>{bookInfo.ISBN}</span>
-          </BookInfoItem>
-          <BookInfoItem>
-            Tác giả: <span>{bookInfo.author}</span>
-          </BookInfoItem>
-          <BookInfoItem>
-            Ngôn ngữ: <span>{bookInfo.language}</span>
-          </BookInfoItem>
-          <BookInfoItem>
-            Số trang:{' '}
-            <span>
-              {!bookInfo.numberOfPages ? 'Không rõ' : bookInfo.numberOfPages}
-            </span>
-          </BookInfoItem>
-          <BookInfoItem>
-            Phiên bản: <span>{bookInfo.edition}</span>
-          </BookInfoItem>
-          <BookInfoItem>
-            Năm phát hành: <span>{bookInfo.publishYear}</span>
-          </BookInfoItem>
-          <BookInfoItem>
-            Nhà phát hành: <span>{bookInfo.publisher}</span>
-          </BookInfoItem>
-        </BookInfo>
-      </ContentWrapper>
+        <ContentWrapper className="book-content-wrapper">
+          <Link to={`/search/${bookInfo.ISBN}`}>
+            <BookTitle className="line-clamp-2 book-title">
+              {bookInfo.bookName}
+            </BookTitle>
+          </Link>
+          <BookInfo>
+            <BookInfoItem>
+              ISBN: <span>{bookInfo.ISBN}</span>
+            </BookInfoItem>
+            <BookInfoItem>
+              Tác giả: <span>{bookInfo.author}</span>
+            </BookInfoItem>
+            <BookInfoItem>
+              Ngôn ngữ: <span>{bookInfo.language}</span>
+            </BookInfoItem>
+            <BookInfoItem>
+              Số trang:{' '}
+              <span>
+                {!bookInfo.numberOfPages ? 'Không rõ' : bookInfo.numberOfPages}
+              </span>
+            </BookInfoItem>
+            <BookInfoItem>
+              Phiên bản: <span>{bookInfo.edition}</span>
+            </BookInfoItem>
+            <BookInfoItem>
+              Năm phát hành: <span>{bookInfo.publishYear}</span>
+            </BookInfoItem>
+            <BookInfoItem>
+              Nhà phát hành: <span>{bookInfo.publisher}</span>
+            </BookInfoItem>
+          </BookInfo>
+        </ContentWrapper>
+      </LeftWrapper>
+
       <RightWrapper>
-        <i className="far fa-heart"></i>
-        <div>
-          <p>{bookInfo.total} cuốn có thể mượn</p>
-          <BorrowBtn className="my-button my-btn-white">Mượn sách</BorrowBtn>
-        </div>
+        <BorrowBtn className="my-button my-btn-white">Mượn sách</BorrowBtn>
       </RightWrapper>
     </Container>
   );
@@ -55,23 +59,55 @@ function SingleBookHorizontal({ bookInfo }) {
 export default SingleBookHorizontal;
 
 const Container = styled.div`
+  border-top: 1px solid var(--line-color);
   position: relative;
+  padding: 2rem 2.4rem;
+  margin-right: 8rem;
+  width: 100%;
+  margin-right: 3.2rem;
+  ${media.tablet} {
+    display: block;
+  }
+`;
+
+const TopWrapper = styled.div`
   display: flex;
   align-items: center;
-  border-top: 1px solid var(--line-color);
-  padding: 4rem 2.4rem;
-  margin-right: 8rem;
-  width: 95%;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  i {
+    font-size: 2.4rem !important;
+    color: var(--text-color-light);
+    margin-right: 2rem;
+    font-size: 1.8rem;
+    &:hover {
+      cursor: pointer;
+      color: var(--my-orange);
+    }
+  }
+`;
+const FavoriteIcon = styled.i``;
+
+const LeftWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
 `;
 
 const BookImg = styled.img`
   height: 20rem;
   width: 16rem;
   margin-right: 3.2rem;
+  ${media.tablet} {
+  }
 `;
 
 const ContentWrapper = styled.div`
   width: 60rem;
+  ${media.tablet} {
+    width: 40rem;
+  }
 `;
 
 const BookTitle = styled.div`
@@ -99,7 +135,7 @@ const BookInfoItem = styled.li`
 `;
 
 const RightWrapper = styled.div`
-  padding: 3rem 0;
+  padding: 2rem;
   position: absolute;
   top: 0;
   right: 0;
@@ -107,23 +143,16 @@ const RightWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-end;
-  p {
-    font-size: 1.4rem;
-    margin-bottom: 1.2rem;
-  }
-  i {
-    color: var(--text-color-light);
-    margin-right: 2rem;
+
+  ${media.tablet} {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
     margin-top: 1rem;
-    font-size: 1.8rem;
-    &:hover {
-      cursor: pointer;
-      color: var(--my-orange);
-    }
-  }
-  div {
   }
 `;
 

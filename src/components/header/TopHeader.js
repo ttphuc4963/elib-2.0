@@ -1,7 +1,10 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
+import { media } from '../../constants/breakpoint';
+
 import { setKeyword } from '../../app/slice/searchSlice';
 
 function TopHeader() {
@@ -96,6 +99,7 @@ function TopHeader() {
 }
 
 export default TopHeader;
+
 const TopHeaderContainer = styled.div`
   background: #1a94ff;
   display: flex;
@@ -105,7 +109,7 @@ const TopHeaderContainer = styled.div`
 `;
 const Nav = styled.div`
   padding: 1.4rem 0;
-  width: 90%;
+  width: 90vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -113,8 +117,11 @@ const Nav = styled.div`
   color: white;
 `;
 const NavLogo = styled.div`
-  display: flex;
   align-items: center;
+  display: flex;
+  ${media.tablet} {
+    display: none;
+  }
 `;
 const Logo = styled.img`
   width: 6rem;
@@ -203,7 +210,8 @@ const NavAction = styled.div`
     transform: translateY(0);
   }
 `;
-export const DropdownWrapper = styled.div`
+
+const DropdownWrapper = styled.div`
   visibility: hidden;
   transform: translateY(-1rem);
   transition: transform 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;

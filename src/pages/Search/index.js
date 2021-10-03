@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components';
+import { media } from '../../constants/breakpoint';
 
 import './paginate.css';
 
@@ -68,10 +69,12 @@ const initQuery = {
 
 function Search() {
   const keyword = useSelector((x) => x.search.keyword);
-
+  const filterRef = useRef();
   const [data, setData] = useState(initData);
   const [query, setQuery] = useState(initQuery);
   const [selectedCatalog, setSelectedCatalog] = useState('');
+  const [isOpen, setOpen] = useState(false);
+  console.log(isOpen);
 
   const handleQuerySelect = useCallback(
     ({ data, id }) => {
@@ -83,6 +86,10 @@ function Search() {
 
   const handlePageChange = ({ selected }) => {
     setData({ ...data, currentPage: selected + 1 });
+  };
+
+  const handleShowFilter = () => {
+    setOpen(!isOpen);
   };
 
   console.log(query);
@@ -105,7 +112,7 @@ function Search() {
     };
 
     handleSearch();
-  }, [data, keyword, query]);
+  }, [data, isOpen, keyword, query]);
 
   return (
     <SearchContainer>
@@ -138,26 +145,42 @@ function Search() {
         )}
       </SearchLeftSide>
       <SearchRightSide>
-        <SortWrapper>
-          <p>Sắp xếp theo:</p>
-          <Dropdown option={sortOption} onSelect={handleQuerySelect} />
-        </SortWrapper>
-        <Tags
-          id="total"
-          tags={['Còn', 'Hết']}
-          title={'Số lượng'}
-          type={Query.FILTER.Total}
-          onSelect={handleQuerySelect}
-          selectedCatalog={selectedCatalog}
-        />
-        <Tags
-          id="tag-name"
-          tags={data.tagNames}
-          title={'Thể loại'}
-          type={Query.FILTER.Tag}
-          onSelect={handleQuerySelect}
-          selectedCatalog={selectedCatalog}
-        />
+        <TopOption>
+          <SortWrapper>
+            <p>Sắp xếp theo:</p>
+            <Dropdown option={sortOption} onSelect={handleQuerySelect} />
+          </SortWrapper>
+          <FilterAction ref={filterRef} onClick={handleShowFilter}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+            >
+              <path d="M2.75 6a.75.75 0 000 1.5h18.5a.75.75 0 000-1.5H2.75zM6 11.75a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H6.75a.75.75 0 01-.75-.75zm4 4.938a.75.75 0 01.75-.75h2.5a.75.75 0 010 1.5h-2.5a.75.75 0 01-.75-.75z"></path>
+            </svg>
+            <span>Bộ lọc tìm kiếm</span>
+          </FilterAction>
+        </TopOption>
+
+        <FilterContent className={`${isOpen ? 'active' : ''}`}>
+          <Tags
+            id="total"
+            tags={['Còn', 'Hết']}
+            title={'Số lượng'}
+            type={Query.FILTER.Total}
+            onSelect={handleQuerySelect}
+            selectedCatalog={selectedCatalog}
+          />
+          <Tags
+            id="tag-name"
+            tags={data.tagNames}
+            title={'Thể loại'}
+            type={Query.FILTER.Tag}
+            onSelect={handleQuerySelect}
+            selectedCatalog={selectedCatalog}
+          />
+        </FilterContent>
       </SearchRightSide>
     </SearchContainer>
   );
@@ -170,17 +193,25 @@ const SearchContainer = styled.div`
   width: 100vw;
   display: flex;
   overflow: hidden;
+  ${media.smallDesktop} {
+    flex-direction: column-reverse;
+  }
 `;
 
 const SearchLeftSide = styled.div`
-  width: 70vw;
+  width: 75vw;
   border-right: 1px solid var(--line-color);
   padding-top: 5.2rem;
-  padding-left: 5%;
+  padding-left: 5vw;
   padding-bottom: 10rem;
   flex-shirk: 1;
   .pagination {
     margin-top: 6rem;
+  }
+  ${media.smallDesktop} {
+    width: 100vw;
+    border-right: none;
+    padding-right: 5%;
   }
 `;
 
@@ -192,15 +223,32 @@ const SearchResultTitle = styled.h2`
 `;
 
 const SearchRightSide = styled.div`
-  margin-top: 6rem;
-  padding-left: 6.2rem;
-  width: 30vw;
+  margin-top: 3.6rem;
+  padding-left: 4rem;
+  width: 25vw;
+  ${media.smallDesktop} {
+    width: 100vw;
+    padding: 0 5%;
+    margin-top: 5.2rem;
+    .tag-container {
+      width: 95%;
+    }
+  }
+  .active {
+    display: block;
+  }
+`;
+
+const TopOption = styled.div`
+  ${media.smallDesktop} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 const SortWrapper = styled.div`
-  position: relative;
-  margin-bottom: 14rem;
-  width: auto;
+  margin-bottom: 4rem;
   p {
     font-size: 1.6rem;
     color: var(--text-color-light);
@@ -209,9 +257,44 @@ const SortWrapper = styled.div`
     margin-bottom: 3rem;
   }
 
-  .dropdown {
-    position: absolute;
-    border: 1px solid var(--line-color);
-    box-shadow: none;
+  ${media.smallDesktop} {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0rem;
+    p {
+      margin-bottom: 0;
+      margin-right: 2rem;
+    }
+  }
+`;
+
+const FilterContent = styled.div`
+  ${media.smallDesktop} {
+    display: none;
+    margin-top: 3rem;
+  }
+`;
+
+const FilterAction = styled.button`
+  font-size: 1.4rem;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--my-orange);
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  background: white;
+  border: 1px solid var(--my-orange);
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  height: 3rem;
+  ${media.smallDesktop} {
+    display: flex;
+  }
+  svg {
+    fill: var(--my-orange);
+    width: 1.5rem;
+    margin-right: 1rem;
   }
 `;

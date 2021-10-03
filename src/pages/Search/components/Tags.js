@@ -38,7 +38,7 @@ function Tags({ tags, title, type, onSelect, id, selectedCatalog }) {
   });
 
   return (
-    <TagsContainer>
+    <TagsContainer className="tag-container">
       <TagsHeader>{title}</TagsHeader>
       {tags[0] ? <TagList>{renderTags}</TagList> : <div></div>}
     </TagsContainer>
@@ -49,7 +49,7 @@ export default Tags;
 
 const TagsContainer = styled.div`
   width: 70%;
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
 `;
 const TagList = styled.ul`
   display: flex;
