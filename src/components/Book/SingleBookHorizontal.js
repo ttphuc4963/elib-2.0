@@ -93,6 +93,7 @@ const LeftWrapper = styled.div`
   display: flex;
   align-items: center;
   padding-left: 2rem;
+  width: 100%;
 `;
 
 const BookImg = styled.img`

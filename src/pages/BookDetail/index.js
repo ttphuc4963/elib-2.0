@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../constants/breakpoint';
 import SingleBookHorizontal from '../../components/Book/SingleBookHorizontal';
-// import Tags from '../Search/components/Tags';
 import BooksSlider from '../../components/Book/BooksSlider';
 import { useEffect } from 'react';
 import { fetchBook } from '../../api/function/book';
@@ -51,23 +51,24 @@ const Container = styled.div`
 const BookDetailWrapper = styled.div``;
 
 const LeftSide = styled.div`
-  width: 140rem;
+  width: 80%;
   padding-top: 2rem;
   margin-left: 5%;
   div {
     border-top: none;
   }
-  .book-img {
-    height: 25rem;
-    width: 20rem;
-    margin-right: 6rem;
-  }
-  .book-title {
-    display: block;
-    font-size: 2.2rem;
-  }
-  .book-content-wrapper {
-    width: 70rem;
+  // // .book-img {
+  // //   height: 25rem;
+  // //   width: 20rem;
+  // //   margin-right: 6rem;
+  // // }
+  // // .book-title {
+  // //   display: block;
+  // //   font-size: 2.2rem;
+  // // }
+
+  ${media.smallDesktop} {
+    width: 90%;
   }
 `;
 

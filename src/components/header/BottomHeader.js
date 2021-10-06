@@ -2,6 +2,8 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { media } from '../../constants/breakpoint';
+
 import { Link } from 'react-router-dom';
 
 function BottomHeader() {
@@ -29,12 +31,19 @@ const BottomHeaderContainer = styled.div`
   padding-left: 5vw;
   height: 6rem;
   width: 100vw;
+  ${media.mobile} {
+    height: 4rem;
+    padding-left: 0;
+  }
 `;
 const MainMenu = styled.ul`
-  height: 6rem;
+  height: 100%;
   display: flex;
   align-items: center;
   font-size: 1.8rem;
+  ${media.mobile} {
+    font-size: 1.4rem;
+  }
 `;
 const MenuItem = styled.li`
   color: #333;
