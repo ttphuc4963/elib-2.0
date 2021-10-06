@@ -32,7 +32,7 @@ const BottomHeaderContainer = styled.div`
   height: 6rem;
   width: 100vw;
   ${media.mobile} {
-    height: 4rem;
+    height: 3.8rem;
     padding-left: 0;
   }
 `;
@@ -42,7 +42,7 @@ const MainMenu = styled.ul`
   align-items: center;
   font-size: 1.8rem;
   ${media.mobile} {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 `;
 const MenuItem = styled.li`
@@ -58,5 +58,8 @@ const MenuItem = styled.li`
   }
   a {
     color: var(---primary-blue);
+  }
+  ${media.mobile} {
+    justify-content: center;
   }
 `;

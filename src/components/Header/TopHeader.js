@@ -60,7 +60,6 @@ function TopHeader() {
             <AppTitle>Thư viện khoa CNTT</AppTitle>
           </LogoHeading>
         </NavLogo>
-
         <NavSearch>
           <SearchWrapper spellcheck="false" onSubmit={handleSearch}>
             <i className="fas fa-search"></i>
@@ -73,6 +72,7 @@ function TopHeader() {
           </SearchWrapper>
         </NavSearch>
         <NavAction>
+          <i className="fas fa-search header-search"></i>
           {profile ? (
             <UserImg onClick={handleShowDropdown} src="/images/avatar.jpg" />
           ) : (
@@ -106,6 +106,9 @@ const TopHeaderContainer = styled.div`
   justify-content: center;
   height: 8rem;
   width: 100vw;
+  ${media.mobile} {
+    height: 6rem;
+  }
 `;
 const Nav = styled.div`
   padding: 1.4rem 0;
@@ -113,23 +116,25 @@ const Nav = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   color: white;
 `;
 const NavLogo = styled.div`
   align-items: center;
   display: flex;
-  ${media.tablet} {
-    display: none;
-  }
 `;
 const Logo = styled.img`
   width: 6rem;
   margin-right: 1rem;
+  ${media.mobile} {
+    width: 4.2rem;
+  }
 `;
 
 const LogoHeading = styled.div`
   color: var(---text-color);
+  ${media.tablet} {
+    display: none;
+  }
 `;
 
 const AppName = styled.div`
@@ -164,6 +169,9 @@ const NavSearch = styled.div`
       color: var(--primary-blue);
     }
   }
+  ${media.mobile} {
+    display: none;
+  }
 `;
 
 const SearchWrapper = styled.form`
@@ -196,18 +204,29 @@ const SearchInput = styled.input`
 
 const LoginButton = styled.button``;
 
+const NavAction = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  .active-dropdown {
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .header-search {
+    font-size: 1.6rem;
+    cursor: pointer;
+    margin-right: 2.4rem;
+  }
+`;
+
 const UserImg = styled.img`
   width: 4.8rem;
   height: 4.8rem;
   border-radius: 50%;
   cursor: pointer;
-`;
-
-const NavAction = styled.div`
-  position: relative;
-  .active-dropdown {
-    visibility: visible;
-    transform: translateY(0);
+  ${media.mobile} {
+    width: 3.6rem;
+    height: 3.6rem;
   }
 `;
 
