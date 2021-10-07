@@ -27,7 +27,7 @@ const BookWrapper = styled.div`
   width: 26rem;
   height: 42rem;
   margin: 0.8rem auto;
-  padding: 1.8rem;
+  padding: 1rem;
   border-radius: 1rem;
   display: inline-block;
   display: flex;

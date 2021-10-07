@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import useWindowSize from '../../utils/hooks/useWindowSize';
 import styled from 'styled-components';
 
@@ -6,39 +6,64 @@ import SingleBookVertical from './SingleBookVertical';
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { media } from '../../constants/breakpoint';
 
 function BooksSlider(props) {
   const [width] = useWindowSize();
+  const [firstClientX, setFirstClientX] = useState();
+  const [firstClientY, setFirstClientY] = useState();
+  const [clientX, setClientX] = useState();
 
-  let slidesToShow = Math.floor(width / 270);
+  useEffect(() => {
+    const touchStart = (e) => {
+      setFirstClientX(e.touches[0].clientX);
+      setFirstClientY(e.touches[0].clientY);
+    };
+
+    const preventTouch = (e) => {
+      const minValue = 5; // threshold
+
+      setClientX(e.touches[0].clientX - firstClientX);
+
+      // Vertical scrolling does not work when you start swiping horizontally.
+      if (Math.abs(clientX) > minValue) {
+        e.preventDefault();
+        e.returnValue = false;
+        return false;
+      }
+    };
+
+    window.addEventListener('touchstart', touchStart);
+    window.addEventListener('touchmove', preventTouch, { passive: false });
+    return () => {
+      window.removeEventListener('touchstart', touchStart);
+      window.removeEventListener('touchmove', preventTouch, {
+        passive: false,
+      });
+    };
+  }, [clientX, firstClientX, firstClientY]);
+
+  let slidesToShow = Math.floor(width / 260);
 
   const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: slidesToShow,
-      slidesToSlide: 1,
-    },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 3000, min: 740 },
       items: slidesToShow,
-      slidesToSlide: 1,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
+      autoPlay: false,
       items: slidesToShow,
-      slidesToSlide: 1,
     },
   };
   let settings = {
     infinite: true,
     slidesToSlide: 1,
-    autoPlay: true,
-    autoPlaySpeed: 3000,
+    autoPlay: width < 740 ? false : true,
+    autoPlaySpeed: 5000,
     customTransition: 'all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s',
     containerClass: 'carousel-container',
-    itemClass: 'carousel-item',
     responsive,
-    removeArrowOnDeviceType: ['tablet', 'mobile'],
   };
 
   const renderBooks = () => {
@@ -82,32 +107,8 @@ const CarouselContainer = styled.div`
       opacity: 0.8;
     }
   }
-  .slick-arrow {
-    &:before {
-      color: var(--my-orange);
-      opacity: 1;
-      font-size: 3rem;
-    }
-  }
-
-  .slick-prev {
-    &:before {
-      position: absolute;
-      right: -4rem;
-    }
-  }
-  .slick-next {
-    &:before {
-      position: absolute;
-      left: -4rem;
-    }
-  }
-
-  .slick-list {
-    overflow: hidden;
-  }
-  button {
-    z-index: 1;
+  ${media.mobile} {
+    margin: 2rem 1rem;
   }
 `;
 
