@@ -78,6 +78,6 @@ const OrderBookButton = styled.button`
   ${media.tablet} {
     bottom: 1rem;
     font-size: 1.2rem;
-    padding: 0.8rem;
+    padding: 1rem;
   }
 `;

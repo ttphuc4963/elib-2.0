@@ -1,64 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import useWindowSize from '../../utils/hooks/useWindowSize';
 import styled from 'styled-components';
 
 import SingleBookVertical from './SingleBookVertical';
 
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 function BooksSlider(props) {
   const [width] = useWindowSize();
-  const [firstClientX, setFirstClientX] = useState();
-  const [firstClientY, setFirstClientY] = useState();
-  const [clientX, setClientX] = useState();
-  useEffect(() => {
-    const touchStart = (e) => {
-      setFirstClientX(e.touches[0].clientX);
-      setFirstClientY(e.touches[0].clientY);
-    };
 
-    const preventTouch = (e) => {
-      const minValue = 5; // threshold
+  let slidesToShow = Math.floor(width / 270);
 
-      setClientX(e.touches[0].clientX - firstClientX);
-
-      // Vertical scrolling does not work when you start swiping horizontally.
-      if (Math.abs(clientX) > minValue) {
-        e.preventDefault();
-        e.returnValue = false;
-        return false;
-      }
-    };
-
-    window.addEventListener('touchstart', touchStart);
-    window.addEventListener('touchmove', preventTouch, { passive: false });
-    return () => {
-      window.removeEventListener('touchstart', touchStart);
-      window.removeEventListener('touchmove', preventTouch, {
-        passive: false,
-      });
-    };
-  }, [clientX, firstClientX, firstClientY]);
-
-  const listLength = props.books.length,
-    totalSlide = Math.floor(width / 320);
-
-  let slidesToShow =
-    listLength !== 0 && totalSlide !== 0
-      ? listLength > totalSlide
-        ? totalSlide
-        : listLength
-      : 1;
-
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: slidesToShow,
+      slidesToSlide: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: slidesToShow,
+      slidesToSlide: 1,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: slidesToShow,
+      slidesToSlide: 1,
+    },
+  };
   let settings = {
     infinite: true,
-    speed: 2000,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    slidesToShow,
+    slidesToSlide: 1,
+    autoPlay: true,
+    autoPlaySpeed: 3000,
+    customTransition: 'all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s',
+    containerClass: 'carousel-container',
+    itemClass: 'carousel-item',
+    responsive,
+    removeArrowOnDeviceType: ['tablet', 'mobile'],
   };
 
   const renderBooks = () => {
@@ -74,7 +54,9 @@ function BooksSlider(props) {
   return (
     <BooksSliderContainer>
       <SliderTitle>{props.title}</SliderTitle>
-      <Carousel {...settings}>{renderBooks()}</Carousel>
+      <CarouselContainer>
+        <Carousel {...settings}>{renderBooks()}</Carousel>
+      </CarouselContainer>
     </BooksSliderContainer>
   );
 }
@@ -92,12 +74,14 @@ const SliderTitle = styled.h3`
   font-weight: 700;
   margin-left: 6%;
 `;
-const Carousel = styled(Slider)`
+const CarouselContainer = styled.div`
   margin: 2rem 6rem;
-  button {
-    z-index: 1;
+  .carousel-container {
+    .react-multiple-carousel__arrow {
+      background: var(--my-orange);
+      opacity: 0.8;
+    }
   }
-
   .slick-arrow {
     &:before {
       color: var(--my-orange);
