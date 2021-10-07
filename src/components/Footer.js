@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../constants/breakpoint';
 
 function Footer() {
   return (
@@ -30,6 +31,10 @@ const FooterContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   color: var(--text-color-light);
+  ${media.mobile} {
+    font-size: 1rem;
+    height: 4rem;
+  }
 `;
 
 const LogoWrapper = styled.div`
@@ -43,6 +48,10 @@ const KHTNLogo = styled.img`
   &:hover {
     cursor: pointer;
   }
+  ${media.mobile} {
+    height: 2rem;
+    margin-left: 2rem;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -50,6 +59,9 @@ const ContentWrapper = styled.div`
   font-weight: 600;
   margin-left: 2rem;
   line-height: 1.6;
+  ${media.mobile} {
+    display: none;
+  }
 `;
 
 const CopyRight = styled.p`

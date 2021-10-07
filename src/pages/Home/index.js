@@ -6,6 +6,7 @@ import {
   fetchLatestBooks,
   fetchMostBorrowBooks,
 } from '../../api/function/book';
+import { media } from '../../constants/breakpoint';
 
 function Home() {
   const [latestBooks, setLatestBooks] = useState([]);
@@ -38,4 +39,7 @@ const HomeContainer = styled.div`
   margin: 0 auto;
   padding-bottom: 14rem;
   overflow: hidden;
+  ${media.mobile} {
+    padding-bottom: 6rem;
+  }
 `;

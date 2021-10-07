@@ -5,6 +5,7 @@ import { FastField, Form, Formik } from 'formik';
 import InputField from '../../components/common/InputField';
 import * as Yup from 'yup';
 import { signIn } from '../../api/function/auth';
+import { media } from '../../constants/breakpoint';
 
 function Login() {
   const initialValues = {
@@ -109,12 +110,15 @@ const Container = styled.div`
 const LoginWrapper = styled.div`
   border-radius: 1rem;
   background: white;
-  padding: 4rem 10rem;
+  padding: 4rem 6rem;
   z-index: 999;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  ${media.mobile} {
+    padding: 4rem 2.2rem;
+  }
 `;
 
 const Logo = styled.img`
@@ -140,6 +144,12 @@ const LoginForm = styled.div`
     color: var(--text-color);
     margin-bottom: 4rem;
   }
+  ${media.mobile} {
+    h3 {
+      font-size: 2.4rem;
+      margin-bottom: 2.4rem;
+    }
+  }
 `;
 
 const LoginButton = styled.button`
@@ -155,6 +165,10 @@ const LoginButton = styled.button`
     &:hover{
     cursor:pointer;
     filter: brightness(1.1);
+    }
+    ${media.mobile} {
+      width: 80vw;
+      max-width: 36rem;
     }
 `;
 

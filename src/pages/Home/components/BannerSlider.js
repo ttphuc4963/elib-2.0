@@ -77,6 +77,9 @@ const CarouselContainer = styled.div``;
 const Wrap = styled.div`
   cursor: pointer;
   height: 24rem;
+  ${media.mobile} {
+    height: 20rem;
+  }
 `;
 
 const Banner = styled.div`

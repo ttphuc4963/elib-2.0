@@ -1,6 +1,7 @@
 import { ErrorMessage } from 'formik';
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../constants/breakpoint';
 
 function InputField(props) {
   const { field, form, type, label, placeholder, autoComplete, disabled } =
@@ -65,7 +66,10 @@ i{
     margin-right:1.2rem;
     font-size:2rem;
 }
-
+${media.mobile} {
+    width: 80vw;
+    max-width: 36rem;
+}
 `;
 
 const LoginInput = styled.input`

@@ -12,7 +12,7 @@ function BooksSlider(props) {
   const [width] = useWindowSize();
 
   let slidesToShow =
-    width < 740 ? Math.floor(width / 180) : Math.floor(width / 260);
+    width < 740 ? Math.floor(width / 180) : Math.floor(width / 300);
 
   const responsive = {
     tablet: {
@@ -20,7 +20,7 @@ function BooksSlider(props) {
       items: slidesToShow,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 740, min: 0 },
       autoPlay: false,
       items: slidesToShow,
     },
@@ -60,6 +60,9 @@ export default BooksSlider;
 const BooksSliderContainer = styled.div`
   margin-top: 6rem;
   width: 100%;
+  ${media.mobile} {
+    margin-top: 4rem;
+  }
 `;
 
 const SliderTitle = styled.h3`
@@ -67,6 +70,9 @@ const SliderTitle = styled.h3`
   font-size: 2.2rem;
   font-weight: 700;
   margin-left: 6%;
+  ${media.mobile} {
+    font-size: 1.8rem;
+  }
 `;
 const CarouselContainer = styled.div`
   margin: 2rem 6rem;

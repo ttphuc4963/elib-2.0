@@ -202,7 +202,12 @@ const SearchInput = styled.input`
   }
 `;
 
-const LoginButton = styled.button``;
+const LoginButton = styled.button`
+  ${media.mobile} {
+    font-size: 1.2rem;
+    padding: 0.6rem;
+  }
+`;
 
 const NavAction = styled.div`
   position: relative;
