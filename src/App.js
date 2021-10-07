@@ -58,5 +58,5 @@ function App() {
 export default App;
 
 const Container = styled.div`
-  overflow-x: hidden;
+  overflow: hidden;
 `;
