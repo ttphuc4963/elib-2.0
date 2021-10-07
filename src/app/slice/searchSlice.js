@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import profileSlice from './profileSlice';
 
 const initialState = { keyword: '' };
 

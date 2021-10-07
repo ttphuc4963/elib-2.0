@@ -20,7 +20,6 @@ function App() {
   const dispatch = useDispatch();
 
   const profile = useSelector((x) => x.profile);
-
   useEffect(() => {
     const checkLoggedIn = async () => {
       if (profile) return;
