@@ -11,7 +11,6 @@ import { media } from '../../constants/breakpoint';
 function Home() {
   const [latestBooks, setLatestBooks] = useState([]);
   const [mostBorrowBooks, setMostBorrowBook] = useState([]);
-  console.log(latestBooks);
   useEffect(() => {
     const getLatestBooks = async () => {
       const res = await fetchLatestBooks(1, 10);

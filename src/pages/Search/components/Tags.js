@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
+import { media } from '../../../constants/breakpoint';
 import { Query } from '../../../constants/query';
 
 function Tags({ tags, title, type, onSelect, id, selectedCatalog }) {
@@ -20,7 +21,6 @@ function Tags({ tags, title, type, onSelect, id, selectedCatalog }) {
     },
     [type, onSelect, id]
   );
-  console.log(tags);
 
   const renderTags = tags.map((tag, index) => {
     return (
@@ -50,6 +50,9 @@ export default Tags;
 const TagsContainer = styled.div`
   width: 70%;
   margin-bottom: 4rem;
+  ${media.mobile} {
+    margin-bottom: 2rem;
+  }
 `;
 const TagList = styled.ul`
   display: flex;
@@ -67,6 +70,9 @@ const TagBtn = styled.button`
   letter-spacing: 0.08rem;
   color: #333;
   font-weight: 500;
+  ${media.mobile} {
+    font-size: 1.2rem;
+  }
 `;
 
 const TagsHeader = styled.h3`
@@ -75,4 +81,8 @@ const TagsHeader = styled.h3`
   color: var(--text-color-light);
   text-transform: uppercase;
   font-weight: 500;
+  ${media.mobile} {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
 `;

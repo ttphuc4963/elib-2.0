@@ -74,7 +74,6 @@ function Search() {
   const [query, setQuery] = useState(initQuery);
   const [selectedCatalog, setSelectedCatalog] = useState('');
   const [isOpen, setOpen] = useState(false);
-  console.log(isOpen);
 
   const handleQuerySelect = useCallback(
     ({ data, id }) => {
@@ -91,8 +90,6 @@ function Search() {
   const handleShowFilter = () => {
     setOpen(!isOpen);
   };
-
-  console.log(query);
 
   useEffect(() => {
     const handleSearch = async () => {
@@ -193,7 +190,7 @@ const SearchContainer = styled.div`
   width: 100vw;
   display: flex;
   overflow: hidden;
-  ${media.smallDesktop} {
+  ${media.laptop} {
     flex-direction: column-reverse;
   }
 `;
@@ -207,11 +204,22 @@ const SearchLeftSide = styled.div`
   flex-shirk: 1;
   .pagination {
     margin-top: 6rem;
+    ${media.mobile} {
+      margin-top: 2rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
-  ${media.smallDesktop} {
+  ${media.laptop} {
     width: 100vw;
     border-right: none;
     padding-right: 5%;
+  }
+  ${media.mobile} {
+    padding-top: 0;
+    margin-top: 4rem;
   }
 `;
 
@@ -220,13 +228,17 @@ const SearchResultTitle = styled.h2`
   font-weight: 600;
   margin-bottom: 3.6rem;
   display: inline-block;
+  ${media.mobile} {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const SearchRightSide = styled.div`
   margin-top: 3.6rem;
   padding-left: 4rem;
   width: 25vw;
-  ${media.smallDesktop} {
+  ${media.laptop} {
     width: 100vw;
     padding: 0 5%;
     margin-top: 5.2rem;
@@ -237,13 +249,19 @@ const SearchRightSide = styled.div`
   .active {
     display: block;
   }
+  ${media.mobile} {
+    margin-top: 3rem;
+  }
 `;
 
 const TopOption = styled.div`
-  ${media.smallDesktop} {
+  ${media.laptop} {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  ${media.mobile} {
+    display: block;
   }
 `;
 
@@ -257,7 +275,7 @@ const SortWrapper = styled.div`
     margin-bottom: 3rem;
   }
 
-  ${media.smallDesktop} {
+  ${media.laptop} {
     display: flex;
     align-items: center;
     margin-bottom: 0rem;
@@ -266,12 +284,22 @@ const SortWrapper = styled.div`
       margin-right: 2rem;
     }
   }
+  ${media.mobile} {
+    justify-content: space-between;
+    p {
+      font-size: 1.2rem;
+    }
+  }
 `;
 
 const FilterContent = styled.div`
-  ${media.smallDesktop} {
+  ${media.laptop} {
     display: none;
     margin-top: 3rem;
+  }
+  ${media.laptop} {
+    display: none;
+    margin-top: 2rem;
   }
 `;
 
@@ -289,8 +317,16 @@ const FilterAction = styled.button`
   border-radius: 1rem;
   padding: 0.5rem 1rem;
   height: 3rem;
-  ${media.smallDesktop} {
+  ${media.laptop} {
     display: flex;
+  }
+  ${media.mobile} {
+    margin-top: 2rem;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
   }
   svg {
     fill: var(--my-orange);

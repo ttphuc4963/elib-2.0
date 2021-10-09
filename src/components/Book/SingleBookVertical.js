@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { media } from '../../constants/breakpoint';
 
@@ -6,10 +7,15 @@ function SingleBookVertical({ bookInfo }) {
   const { bookName, coverImg, author } = bookInfo;
   return (
     <BookWrapper>
-      <BookImg src={coverImg} />
-      <BookName className="line-clamp-2">{bookName}</BookName>
-      <span></span>
-      <BookAuthor>{author}</BookAuthor>
+      <Link to={`/search/${bookInfo.ISBN}`}>
+        <BookImgWrapper>
+          <BookImg src={coverImg} />
+        </BookImgWrapper>
+
+        <BookName className="line-clamp-2">{bookName}</BookName>
+        <span></span>
+        <BookAuthor>{author}</BookAuthor>
+      </Link>
       <OrderBookButton className="my-button my-btn-white">
         Mượn sách
       </OrderBookButton>
@@ -24,12 +30,11 @@ const BookWrapper = styled.div`
   background-color: white;
   cursor: pointer;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  width: 26rem;
+  width: 22rem;
   height: 42rem;
   margin: 0.8rem auto;
   padding: 1rem;
   border-radius: 1rem;
-  display: inline-block;
   display: flex;
   flex-direction: column;
   ${media.mobile} {
@@ -37,9 +42,12 @@ const BookWrapper = styled.div`
     height: 34rem;
   }
 `;
-
+const BookImgWrapper = styled.div`
+  margin: 1.2rem auto;
+  width: 100%;
+  text-align: center;
+`;
 const BookImg = styled.img`
-  margin: 0 auto 2rem auto;
   width: 18rem;
   height: 24rem;
   ${media.mobile} {

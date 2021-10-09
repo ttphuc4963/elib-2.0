@@ -68,6 +68,10 @@ const Container = styled.div`
   ${media.tablet} {
     display: block;
   }
+  ${media.mobile} {
+    padding: 2rem 0rem;
+  }
+}
 `;
 
 const TopWrapper = styled.div`
@@ -94,13 +98,18 @@ const LeftWrapper = styled.div`
   align-items: center;
   padding-left: 2rem;
   width: 100%;
+  ${media.mobile} {
+    padding-left: 0;
+  }
 `;
 
 const BookImg = styled.img`
   height: 20rem;
   width: 16rem;
   margin-right: 3.2rem;
-  ${media.tablet} {
+  ${media.mobile} {
+    width: 12rem;
+    height: 15rem;
   }
 `;
 
@@ -108,6 +117,9 @@ const ContentWrapper = styled.div`
   width: 60rem;
   ${media.tablet} {
     width: 40rem;
+  }
+  ${media.mobile} {
+    width: 20rem;
   }
 `;
 
@@ -122,6 +134,9 @@ const BookTitle = styled.div`
   &:hover {
     color: #42aae6;
   }
+  ${media.mobile} {
+    font-size: 1.4rem;
+  }
 `;
 
 const BookInfo = styled.ul``;
@@ -132,6 +147,9 @@ const BookInfoItem = styled.li`
   span {
     margin-left: 0.6rem;
     font-weight: 600;
+  }
+  ${media.mobile} {
+    font-size: 1.2rem;
   }
 `;
 
@@ -159,7 +177,12 @@ const RightWrapper = styled.div`
 
 const BorrowBtn = styled.button`
   margin-left: auto;
-  margin-right: 0;
   padding-left: 2rem;
   padding-right: 2rem;
+  ${media.mobile} {
+    width: 100%;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    padding: 0.8rem;
+  }
 `;

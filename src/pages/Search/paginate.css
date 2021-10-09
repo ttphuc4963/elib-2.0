@@ -1,3 +1,5 @@
+
+
 .pagination {
   padding-top: 1rem;
   display: flex;
@@ -13,10 +15,10 @@
 .pagination li {
   display: inline-block;
   margin-right: 1rem;
+  font-size:1.4rem;
 }
 
 .pagination > li > a {
-  font-size: 1.4rem;
   font-weight: 600;
   margin: 1px;
   display: flex;
@@ -64,3 +66,19 @@
 .pagination > li:last-child > span {
   border-radius: unset;
 } */
+@media only screen and (max-device-width : 739px){
+  .pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  margin: 0 1rem 0 1rem;
+}
+.pagination li{
+  font-size:1.2rem;
+}
+
+.pagination > li > a {
+  width:2rem;
+  height:2rem;
+}
+}

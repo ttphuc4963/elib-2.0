@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { media } from '../../../constants/breakpoint';
 
 function Dropdown({ option, onSelect }) {
   const dropdownRef = useRef();
@@ -72,11 +73,14 @@ const Container = styled.div`
   background-color: white;
   border-radius: 1rem;
   border: 1px solid var(--line-color);
-  width: 24rem;
+  width: 20rem;
   height: fit-content;
   // box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   .open {
     display: block;
+  }
+  ${media.mobile} {
+    font-size: 1.2rem;
   }
 `;
 

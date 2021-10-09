@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import useWindowSize from '../../utils/hooks/useWindowSize';
 import styled from 'styled-components';
 
@@ -12,7 +12,7 @@ function BooksSlider(props) {
   const [width] = useWindowSize();
 
   let slidesToShow =
-    width < 740 ? Math.floor(width / 180) : Math.floor(width / 300);
+    width < 740 ? Math.floor(width / 180) : Math.floor(width / 270);
 
   const responsive = {
     tablet: {
