@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import styled from 'styled-components';
 import { media } from '../../constants/breakpoint';
@@ -8,6 +8,7 @@ import { media } from '../../constants/breakpoint';
 import { setKeyword } from '../../app/slice/searchSlice';
 
 function TopHeader() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const profile = useSelector((x) => x.profile);
   const dropdownRef = useRef(null);
@@ -39,16 +40,18 @@ function TopHeader() {
     (e) => {
       e.preventDefault();
       dispatch(setKeyword(searchInputRef.current.value));
+      history.push('search');
     },
-    [dispatch]
+    [dispatch, history]
   );
 
   const handleMobileSearch = useCallback(
     (e) => {
       e.preventDefault();
       dispatch(setKeyword(searchMobileInputRef.current.value));
+      history.push('search');
     },
-    [dispatch]
+    [dispatch, history]
   );
 
   useEffect(() => {
@@ -93,10 +96,10 @@ function TopHeader() {
             </SearchWrapper>
           </NavSearch>
           <NavAction>
-            <i
-              onClick={handleShowMobileSearch}
-              className="fas fa-search header-search"
-            ></i>
+            <div className="header-search">
+              <i onClick={handleShowMobileSearch} className="fas fa-search"></i>
+            </div>
+
             {profile ? (
               <UserImg onClick={handleShowDropdown} src="/images/avatar.jpg" />
             ) : (
@@ -281,6 +284,7 @@ const NavAction = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  height: 100%;
   .active-dropdown {
     visibility: visible;
     transform: translateY(0);
@@ -288,7 +292,16 @@ const NavAction = styled.div`
   .header-search {
     font-size: 1.6rem;
     cursor: pointer;
-    margin-right: 2.4rem;
+    height: 4rem;
+    width: 4rem;
+    display: none;
+    margin-right: 1.2rem;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    ${media.mobile} {
+      display: flex;
+    }
   }
 `;
 
