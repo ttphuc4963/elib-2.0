@@ -182,7 +182,7 @@ const BorrowBtn = styled.button`
   ${media.mobile} {
     width: 100%;
     margin-top: 2rem;
-    font-size: 1.2rem;
-    padding: 0.8rem;
+    font-size: 1.4rem;
+    padding: 1.2rem;
   }
 `;

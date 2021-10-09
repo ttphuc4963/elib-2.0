@@ -28,9 +28,9 @@ function BooksSlider(props) {
   let settings = {
     infinite: true,
     slidesToSlide: 1,
-    autoPlay: width < 740 ? false : true,
+    autoPlay: true,
     autoPlaySpeed: 5000,
-    customTransition: 'all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s',
+    customTransition: 'all 1ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s',
     containerClass: 'carousel-container',
     responsive,
   };
