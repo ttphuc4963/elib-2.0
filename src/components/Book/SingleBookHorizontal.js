@@ -1,14 +1,45 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { addFavorites, removeFavorites } from '../../app/slice/favoriteSlice';
 import { media } from '../../constants/breakpoint';
 
 function SingleBookHorizontal({ bookInfo }) {
+  const dispatch = useDispatch();
+  const { favouriteList } = useSelector((x) => x.favorite);
+
+  const handleAddFavorite = useCallback(() => {
+    dispatch(addFavorites(bookInfo));
+  }, [bookInfo, dispatch]);
+
+  const handleRemoveFavorite = useCallback(() => {
+    dispatch(removeFavorites(bookInfo.ISBN));
+  }, [bookInfo, dispatch]);
+
+  const isFavorite = useMemo(
+    () =>
+      favouriteList
+        ? favouriteList.some((book) => book.ISBN === bookInfo.ISBN)
+        : false,
+    [bookInfo, favouriteList]
+  );
+
   return (
     <Container>
       <TopWrapper>
         <p>{bookInfo.total} cuốn có thể mượn</p>
-        <FavoriteIcon className="far fa-heart"></FavoriteIcon>
+        {isFavorite ? (
+          <RemoveFavoriteIcon
+            onClick={handleRemoveFavorite}
+            className="fas fa-heart"
+          ></RemoveFavoriteIcon>
+        ) : (
+          <FavoriteIcon
+            onClick={handleAddFavorite}
+            className="far fa-heart"
+          ></FavoriteIcon>
+        )}
       </TopWrapper>
       <LeftWrapper>
         <Link to={`/search/${bookInfo.ISBN}`}>
@@ -81,17 +112,20 @@ const TopWrapper = styled.div`
   font-size: 1.4rem;
   margin-bottom: 2rem;
   i {
+    z-index: 1;
     font-size: 2.4rem !important;
     color: var(--text-color-light);
     margin-right: 2rem;
     font-size: 1.8rem;
     &:hover {
       cursor: pointer;
-      color: var(--my-orange);
     }
   }
 `;
 const FavoriteIcon = styled.i``;
+const RemoveFavoriteIcon = styled.i`
+  color: var(--my-orange) !important;
+`;
 
 const LeftWrapper = styled.div`
   display: flex;

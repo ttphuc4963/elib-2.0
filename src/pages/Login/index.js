@@ -6,7 +6,7 @@ import InputField from '../../components/common/InputField';
 import * as Yup from 'yup';
 import { signIn } from '../../api/function/auth';
 import { media } from '../../constants/breakpoint';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 function Login() {
   const initialValues = {
@@ -39,53 +39,50 @@ function Login() {
   }
 
   return (
-    <>
-      <ToastContainer></ToastContainer>
-      <Container>
-        <LoginWrapper>
-          <Formik
-            validationSchema={validationSchema}
-            initialValues={initialValues}
-            onSubmit={handleSignIn}
-          >
-            {() => {
-              return (
-                <Form>
-                  <LoginForm>
-                    <Link to="/">
-                      <Logo src="/images/logo.svg" />
-                    </Link>
-                    <h3>Đăng nhập vào eLib</h3>
+    <Container>
+      <LoginWrapper>
+        <Formik
+          validationSchema={validationSchema}
+          initialValues={initialValues}
+          onSubmit={handleSignIn}
+        >
+          {() => {
+            return (
+              <Form>
+                <LoginForm>
+                  <Link to="/">
+                    <Logo src="/images/logo.svg" />
+                  </Link>
+                  <h3>Đăng nhập vào eLib</h3>
 
-                    <FastField
-                      name="email"
-                      type="text"
-                      placeholder="Địa chỉ email"
-                      label="Email"
-                      component={InputField}
-                      autoComplete="on"
-                    />
-                    <FastField
-                      name="password"
-                      type="password"
-                      placeholder="Mật khẩu"
-                      component={InputField}
-                      autoComplete="current-password"
-                    />
-                    <a href="/login">Quên mật khẩu?</a>
-                  </LoginForm>
-                  <LoginButton htmlType="submit">Đăng nhập</LoginButton>
-                </Form>
-              );
-            }}
-          </Formik>
+                  <FastField
+                    name="email"
+                    type="text"
+                    placeholder="Địa chỉ email"
+                    label="Email"
+                    component={InputField}
+                    autoComplete="on"
+                  />
+                  <FastField
+                    name="password"
+                    type="password"
+                    placeholder="Mật khẩu"
+                    component={InputField}
+                    autoComplete="current-password"
+                  />
+                  <a href="/login">Quên mật khẩu?</a>
+                </LoginForm>
+                <LoginButton htmlType="submit">Đăng nhập</LoginButton>
+              </Form>
+            );
+          }}
+        </Formik>
 
-          <LoginRegister>
-            Bạn chưa có tài khoản? <a href="/login">Đăng ký</a>
-          </LoginRegister>
-        </LoginWrapper>
-      </Container>
-    </>
+        <LoginRegister>
+          Bạn chưa có tài khoản? <a href="/login">Đăng ký</a>
+        </LoginRegister>
+      </LoginWrapper>
+    </Container>
   );
 }
 
