@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const api = axios.create({
   baseURL: 'https://tranquil-scrubland-52698.herokuapp.com',
@@ -24,6 +25,9 @@ api.interceptors.response.use(
   },
   (err) => {
     console.error(err);
+    toast.error(err.response.data.message, {
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
     console.log(err.response.data.message);
   }
 );

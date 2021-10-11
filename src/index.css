@@ -28,6 +28,8 @@ code {
   --background-gray: #e8ebed;
   --my-orange: #f05123;
   --line-color: rgba(0, 0, 0, 0.09);
+  --toastify-font-family: 'Montserrat', sans-serif;
+  --toastify-text-color-light:#292929;
 }
 
 ul {

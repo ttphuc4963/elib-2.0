@@ -18,7 +18,6 @@ function TopHeader() {
 
   const [isDropdownActive, setDropdownActive] = useState(false);
   const [isMobileSearchActive, setMobileSearchActive] = useState(false);
-  console.log(isMobileSearchActive);
 
   const handleShowDropdown = () => {
     setDropdownActive(!isDropdownActive);
@@ -137,7 +136,10 @@ function TopHeader() {
           className="search-input_mobile"
         ></SearchInput>
         <i
-          onClick={handleClearMobileInput}
+          onClick={() => {
+            handleClearMobileInput();
+            handleShowMobileSearch();
+          }}
           className="fas fa-times search-close_mobile"
         ></i>
       </SearchWrapper>
@@ -153,8 +155,17 @@ const Container = styled.div`
     display: block !important;
   }
   .search_mobile {
+    position: relative;
     display: none;
+    height:5rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 10px -5px;
+    .search-close_mobile{
+      position:absolute;
+      right: 1.8rem;
+      font-size: 1.6rem;
+      margin-top: 1.7rem;
+
+    }
     &:focus-within {
       caret-color: #185adb;
       .fa-times {
@@ -168,7 +179,7 @@ const Container = styled.div`
     margin-left: 0;
     padding: 2rem 0 2rem 5%;
     height: 5rem;
-    width: 94%;
+    width: 90%;
   }
   
 `;

@@ -13,6 +13,8 @@ import Logout from './pages/Logout';
 import { isLoggedIn } from './utils/auth';
 import { clearProfile, setProfile } from './app/slice/profileSlice';
 import styled from 'styled-components';
+import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { pathname } = useLocation();
