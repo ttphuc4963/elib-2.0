@@ -29,10 +29,12 @@ function TopHeader() {
 
   const handleClearInput = () => {
     searchInputRef.current.value = '';
+    dispatch(setKeyword(''));
   };
 
   const handleClearMobileInput = () => {
     searchMobileInputRef.current.value = '';
+    dispatch(setKeyword(''));
   };
 
   const handleSearch = useCallback(
@@ -241,6 +243,12 @@ const NavSearch = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  input[type='search']::-webkit-search-decoration,
+  input[type='search']::-webkit-search-cancel-button,
+  input[type='search']::-webkit-search-results-button,
+  input[type='search']::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
   &:focus-within {
     caret-color: #185adb;
     border: 1.5px solid rgba(0, 0, 0, 0.2);
