@@ -100,6 +100,7 @@ const DropdownHeader = styled.div`
   }
 `;
 const DropdownBody = styled.div`
+  z-index: 10;
   padding: 0.5rem;
   display: none;
   position: absolute;

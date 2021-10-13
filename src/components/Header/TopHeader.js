@@ -87,6 +87,7 @@ function TopHeader() {
             <SearchWrapper spellcheck="false" onSubmit={handleSearch}>
               <i className="fas fa-search"></i>
               <SearchInput
+                type="text"
                 ref={searchInputRef}
                 placeholder="Tìm kiếm sách, tác giả, NXB, ..."
                 spellCheck="false"
@@ -130,6 +131,7 @@ function TopHeader() {
         } search_mobile`}
       >
         <SearchInput
+          type="text"
           ref={searchMobileInputRef}
           placeholder="Tìm kiếm sách, tác giả, NXB, ..."
           spellCheck="false"
