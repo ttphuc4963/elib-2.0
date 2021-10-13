@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -42,11 +42,11 @@ function SingleBookHorizontal({ bookInfo }) {
         )}
       </TopWrapper>
       <LeftWrapper>
-        <Link to={`/search/${bookInfo.ISBN}`}>
+        <Link to={`/book/${bookInfo.ISBN}`}>
           <BookImg className="book-img" src={bookInfo.coverImg}></BookImg>
         </Link>
         <ContentWrapper className="book-content-wrapper">
-          <Link to={`/search/${bookInfo.ISBN}`}>
+          <Link to={`/book/${bookInfo.ISBN}`}>
             <BookTitle className="line-clamp-2 book-title">
               {bookInfo.bookName}
             </BookTitle>

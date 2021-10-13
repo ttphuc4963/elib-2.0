@@ -7,7 +7,7 @@ function SingleBookVertical({ bookInfo }) {
   const { bookName, coverImg, author } = bookInfo;
   return (
     <BookWrapper>
-      <Link to={`/search/${bookInfo.ISBN}`}>
+      <Link to={`/book/${bookInfo.ISBN}`}>
         <BookImgWrapper>
           <BookImg src={coverImg} />
         </BookImgWrapper>

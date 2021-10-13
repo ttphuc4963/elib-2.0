@@ -46,7 +46,7 @@ function App() {
         <Route path="/logout">
           <Logout />
         </Route>
-        <Route path="/search/:isbn">
+        <Route path="/book/:isbn">
           <BookDetail />
         </Route>
         <Route path="/search">

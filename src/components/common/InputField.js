@@ -52,7 +52,6 @@ align-items: center;
 border: 1px solid var(--line-color);
 padding: 0 2rem;
 input{
-  background: none;
   border: none;
   font-size: 1.6rem;
   width: 100%;

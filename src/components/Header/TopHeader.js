@@ -38,8 +38,8 @@ function TopHeader() {
   const handleSearch = useCallback(
     (e) => {
       e.preventDefault();
+      history.push('/search');
       dispatch(setKeyword(searchInputRef.current.value));
-      history.push('search');
     },
     [dispatch, history]
   );
@@ -48,7 +48,7 @@ function TopHeader() {
     (e) => {
       e.preventDefault();
       dispatch(setKeyword(searchMobileInputRef.current.value));
-      history.push('search');
+      history.push('/search');
     },
     [dispatch, history]
   );
@@ -87,7 +87,7 @@ function TopHeader() {
             <SearchWrapper spellcheck="false" onSubmit={handleSearch}>
               <i className="fas fa-search"></i>
               <SearchInput
-                type="text"
+                type="search"
                 ref={searchInputRef}
                 placeholder="Tìm kiếm sách, tác giả, NXB, ..."
                 spellCheck="false"
@@ -131,7 +131,7 @@ function TopHeader() {
         } search_mobile`}
       >
         <SearchInput
-          type="text"
+          type="search"
           ref={searchMobileInputRef}
           placeholder="Tìm kiếm sách, tác giả, NXB, ..."
           spellCheck="false"

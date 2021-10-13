@@ -19,9 +19,10 @@ function BookDetail() {
     };
     getBook();
   }, [isbn]);
+  console.log(data);
   return (
     <Container>
-      {data && (
+      {data && data.bookInfo && (
         <>
           <BookDetailWrapper>
             <LeftSide>
